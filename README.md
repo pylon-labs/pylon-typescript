@@ -6,10 +6,8 @@ The official TypeScript SDK for the [Pylon API](https://docs.usepylon.com).
 
 ## Installation
 
-Install the package attached to a [GitHub release](https://github.com/pylon-labs/pylon-typescript/releases):
-
 ```bash
-npm install https://github.com/pylon-labs/pylon-typescript/releases/download/v0.1.0-alpha.1/usepylon-sdk-0.1.0-alpha.1.tgz
+npm install @usepylon/sdk
 ```
 
 Requires Node.js 18 or later. The package ships both ES module and CommonJS entry points.
