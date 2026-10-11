@@ -1,0 +1,9 @@
+export type { FeatureRequestsAddEvidenceRequest } from "./FeatureRequestsAddEvidenceRequest.js";
+export type { FeatureRequestsCreateRequest } from "./FeatureRequestsCreateRequest.js";
+export type { FeatureRequestsDeleteRequest } from "./FeatureRequestsDeleteRequest.js";
+export type { FeatureRequestsGetRequest } from "./FeatureRequestsGetRequest.js";
+export type { FeatureRequestsLinkExternalIssueRequest } from "./FeatureRequestsLinkExternalIssueRequest.js";
+export type { FeatureRequestsMergeRequest } from "./FeatureRequestsMergeRequest.js";
+export type { FeatureRequestsSearchRequest } from "./FeatureRequestsSearchRequest.js";
+export type { FeatureRequestsSetPortalVisibilityRequest } from "./FeatureRequestsSetPortalVisibilityRequest.js";
+export type { FeatureRequestsUpdateRequest } from "./FeatureRequestsUpdateRequest.js";

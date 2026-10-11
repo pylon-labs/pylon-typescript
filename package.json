@@ -1,0 +1,44 @@
+{
+  "name": "@usepylon/sdk",
+  "version": "0.0.0",
+  "description": "Official TypeScript SDK for the Pylon API",
+  "license": "MIT",
+  "homepage": "https://docs.usepylon.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pylon-labs/pylon-typescript.git"
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/cjs/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      },
+      "default": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepare": "node scripts/build.mjs",
+    "test": "node scripts/smoke-test.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.70",
+    "typescript": "~5.7.2"
+  }
+}

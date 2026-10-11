@@ -1,0 +1,16 @@
+export { IssuesBulkUpdateRequest } from "./IssuesBulkUpdateRequest.js";
+export type { IssuesCreateAiResponseRequest } from "./IssuesCreateAiResponseRequest.js";
+export type { IssuesCreateDraftReplyRequest } from "./IssuesCreateDraftReplyRequest.js";
+export type { IssuesCreateNoteRequest } from "./IssuesCreateNoteRequest.js";
+export { IssuesCreateRequest } from "./IssuesCreateRequest.js";
+export type { IssuesDeleteRequest } from "./IssuesDeleteRequest.js";
+export type { IssuesGetRequest } from "./IssuesGetRequest.js";
+export { IssuesLinkExternalIncidentRequest } from "./IssuesLinkExternalIncidentRequest.js";
+export type { IssuesLinkExternalIssueRequest } from "./IssuesLinkExternalIssueRequest.js";
+export type { IssuesListRequest } from "./IssuesListRequest.js";
+export type { IssuesMarkSpamRequest } from "./IssuesMarkSpamRequest.js";
+export type { IssuesMergeRequest } from "./IssuesMergeRequest.js";
+export type { IssuesReplyRequest } from "./IssuesReplyRequest.js";
+export type { IssuesSearchRequest } from "./IssuesSearchRequest.js";
+export type { IssuesSnoozeRequest } from "./IssuesSnoozeRequest.js";
+export { IssuesUpdateRequest } from "./IssuesUpdateRequest.js";
