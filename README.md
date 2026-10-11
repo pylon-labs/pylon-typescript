@@ -21,7 +21,7 @@ import { PylonClient, PylonEnvironment } from "@usepylon/sdk";
 
 const client = new PylonClient({ token: "YOUR_API_TOKEN" });
 
-const { data: issue } = await client.issues.get("issue_id");
+const { data: issue } = await client.issues.get({ id: "issue_id" });
 
 // List methods page through results automatically.
 for await (const account of await client.accounts.list()) {
@@ -43,7 +43,7 @@ Requests that fail throw a `PylonError` carrying the status code and response bo
 import { PylonError } from "@usepylon/sdk";
 
 try {
-    await client.issues.get("missing");
+    await client.issues.get({ id: "missing" });
 } catch (error) {
     if (error instanceof PylonError) {
         console.log(error.statusCode, error.body);
@@ -53,7 +53,7 @@ try {
 
 ## Reference
 
-The [Pylon API documentation](https://docs.usepylon.com) covers every endpoint. Method names follow the API paths: `GET /knowledge-bases/{id}/articles` is `client.knowledgeBases.articles.list(knowledgeBaseId)`.
+The [Pylon API documentation](https://docs.usepylon.com) covers every endpoint. Method names follow the API paths, and each method takes one request object holding its path parameters and fields under their API names: `GET /knowledge-bases/{id}/articles` is `client.knowledgeBases.articles.list({ knowledge_base_id })`.
 
 ## Contributing
 
