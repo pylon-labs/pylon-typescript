@@ -1,4 +1,4 @@
-// Runs on install from git (npm's `prepare`), so it can't rely on a POSIX shell.
+// Plain Node rather than a shell script, so the build also runs on Windows.
 import { execFileSync } from "node:child_process";
 import { rmSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
