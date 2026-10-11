@@ -3,6 +3,6 @@
 import type * as Pylon from "../index.js";
 
 export interface GetTrainingDataResponseBody {
-    data?: Pylon.TrainingData | undefined;
+    data: Pylon.TrainingData;
     request_id: string;
 }

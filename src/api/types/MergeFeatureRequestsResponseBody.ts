@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface MergeFeatureRequestsResponseBody {
-    data?: Pylon.FeatureRequest | undefined;
+    data: Pylon.FeatureRequest;
     /** The request ID for tracking. */
     request_id: string;
 }

@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface GetMacroResponseBody {
-    data?: Pylon.Macro | undefined;
+    data: Pylon.Macro;
     /** The request ID for tracking. */
     request_id: string;
 }

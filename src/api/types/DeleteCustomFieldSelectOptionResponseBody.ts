@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface DeleteCustomFieldSelectOptionResponseBody {
-    data?: Pylon.DeleteCustomFieldSelectOptionResponseData | undefined;
+    data: Pylon.DeleteCustomFieldSelectOptionResponseData;
     /** The request ID for tracking. */
     request_id: string;
 }

@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface UpdateMilestoneResponseBody {
-    data?: Pylon.Milestone | undefined;
+    data: Pylon.Milestone;
     /** The request ID for tracking. */
     request_id: string;
 }

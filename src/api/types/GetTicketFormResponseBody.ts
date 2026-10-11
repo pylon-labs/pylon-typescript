@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface GetTicketFormResponseBody {
-    data?: Pylon.TicketForm | undefined;
+    data: Pylon.TicketForm;
     /** The request ID for tracking. */
     request_id: string;
 }

@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface GetKnowledgeBaseThemeResponseBody {
-    data?: Pylon.KnowledgeBaseTheme | undefined;
+    data: Pylon.KnowledgeBaseTheme;
     /** The request ID for tracking. */
     request_id: string;
 }

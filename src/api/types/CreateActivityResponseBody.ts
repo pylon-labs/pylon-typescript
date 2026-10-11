@@ -3,6 +3,6 @@
 import type * as Pylon from "../index.js";
 
 export interface CreateActivityResponseBody {
-    data?: Pylon.CreateActivityResponseData | undefined;
+    data: Pylon.CreateActivityResponseData;
     request_id: string;
 }

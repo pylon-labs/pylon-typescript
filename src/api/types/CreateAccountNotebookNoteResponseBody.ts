@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface CreateAccountNotebookNoteResponseBody {
-    data?: (Pylon.AccountNotebookNote | null) | undefined;
+    data: Pylon.AccountNotebookNote;
     /** The request ID for tracking. */
     request_id: string;
 }

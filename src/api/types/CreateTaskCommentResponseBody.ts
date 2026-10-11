@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface CreateTaskCommentResponseBody {
-    data?: Pylon.TaskComment | undefined;
+    data: Pylon.TaskComment;
     /** The request ID for tracking. */
     request_id: string;
 }

@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface MarkIssuesAsSpamResponseBody {
-    data?: (Pylon.BulkIssueResult | null) | undefined;
+    data: Pylon.BulkIssueResult;
     /** The request ID for tracking. */
     request_id: string;
 }

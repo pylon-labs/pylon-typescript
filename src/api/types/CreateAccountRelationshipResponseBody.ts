@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface CreateAccountRelationshipResponseBody {
-    data?: (Pylon.AccountRelationship | null) | undefined;
+    data: Pylon.AccountRelationship;
     /** The request ID for tracking. */
     request_id: string;
 }

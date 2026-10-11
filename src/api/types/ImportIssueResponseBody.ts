@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface ImportIssueResponseBody {
-    data?: Pylon.Issue | undefined;
+    data: Pylon.Issue;
     /** The request ID for tracking. */
     request_id: string;
     warnings?: Pylon.ImportWarnings | undefined;

@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface CreateRouteRedirectResponseBody {
-    data?: Pylon.RouteRedirect | undefined;
+    data: Pylon.RouteRedirect;
     /** The request ID for tracking. */
     request_id: string;
 }

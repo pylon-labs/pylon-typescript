@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface ImportContactResponseBody {
-    data?: Pylon.Contact | undefined;
+    data: Pylon.Contact;
     /** The request ID for tracking. */
     request_id: string;
 }
