@@ -48,8 +48,12 @@ jobs:
           dist_tag=latest
           if [[ "$VERSION" == *-* ]]; then
             prerelease=(--prerelease)
-            # 0.1.0-alpha.1 publishes under the "alpha" dist-tag.
-            dist_tag=$(echo "${VERSION#*-}" | cut -d. -f1)
+            # npm installs the latest dist-tag by default, so prereleases move
+            # it until a stable release exists, then use their own label.
+            current_latest=$(npm view @usepylon/sdk dist-tags.latest 2>/dev/null || true)
+            if [[ -n "$current_latest" && "$current_latest" != *-* ]]; then
+              dist_tag=$(echo "${VERSION#*-}" | cut -d. -f1)
+            fi
           fi
           gh release create "v$VERSION" "$tarball" --generate-notes "${prerelease[@]}"
           echo "tarball=$tarball" >> "$GITHUB_OUTPUT"
