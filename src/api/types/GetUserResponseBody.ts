@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface GetUserResponseBody {
-    data?: Pylon.User | undefined;
+    data: Pylon.User;
     /** The request ID for tracking. */
     request_id: string;
 }

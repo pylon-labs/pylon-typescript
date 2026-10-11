@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface CreateIssueDraftReplyResponseBody {
-    data?: (Pylon.CreateIssueDraftReplyResponseData | null) | undefined;
+    data: Pylon.CreateIssueDraftReplyResponseData;
     /** The request ID for tracking. */
     request_id: string;
 }

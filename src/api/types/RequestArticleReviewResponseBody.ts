@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface RequestArticleReviewResponseBody {
-    data?: Pylon.RequestArticleReviewData | undefined;
+    data: Pylon.RequestArticleReviewData;
     /** The request ID for tracking. */
     request_id: string;
 }

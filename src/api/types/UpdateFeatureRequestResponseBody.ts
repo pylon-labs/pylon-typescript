@@ -3,6 +3,6 @@
 import type * as Pylon from "../index.js";
 
 export interface UpdateFeatureRequestResponseBody {
-    data?: Pylon.FeatureRequest | undefined;
+    data: Pylon.FeatureRequest;
     request_id: string;
 }

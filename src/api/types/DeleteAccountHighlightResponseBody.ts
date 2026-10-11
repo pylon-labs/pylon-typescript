@@ -3,6 +3,6 @@
 import type * as Pylon from "../index.js";
 
 export interface DeleteAccountHighlightResponseBody {
-    data?: Pylon.DeleteAccountHighlightResponseData | undefined;
+    data: Pylon.DeleteAccountHighlightResponseData;
     request_id: string;
 }

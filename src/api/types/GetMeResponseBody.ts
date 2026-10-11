@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface GetMeResponseBody {
-    data?: Pylon.Me | undefined;
+    data: Pylon.Me;
     /** The request ID for tracking. */
     request_id: string;
 }

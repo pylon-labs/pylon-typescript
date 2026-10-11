@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface UpdateCustomFieldResponseBody {
-    data?: Pylon.CustomFieldDefinition | undefined;
+    data: Pylon.CustomFieldDefinition;
     /** The request ID for tracking. */
     request_id: string;
 }

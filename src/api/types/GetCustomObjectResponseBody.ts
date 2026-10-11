@@ -3,6 +3,6 @@
 import type * as Pylon from "../index.js";
 
 export interface GetCustomObjectResponseBody {
-    data?: Pylon.ApiCustomObject | undefined;
+    data: Pylon.ApiCustomObject;
     request_id: string;
 }

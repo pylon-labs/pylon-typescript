@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface CreateCollectionResponseBody {
-    data?: Pylon.Collection | undefined;
+    data: Pylon.Collection;
     /** The request ID for tracking. */
     request_id: string;
 }

@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface CreateAttachmentResponseBody {
-    data?: Pylon.Attachment | undefined;
+    data: Pylon.Attachment;
     /** The request ID for tracking. */
     request_id: string;
 }

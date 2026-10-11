@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface GetCallRecordingResponseBody {
-    data?: Pylon.CallRecording | undefined;
+    data: Pylon.CallRecording;
     /** The request ID for tracking. */
     request_id: string;
 }

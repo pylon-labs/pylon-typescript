@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface GetKnowledgeBaseResponseBody {
-    data?: Pylon.KnowledgeBase | undefined;
+    data: Pylon.KnowledgeBase;
     /** The request ID for tracking. */
     request_id: string;
 }

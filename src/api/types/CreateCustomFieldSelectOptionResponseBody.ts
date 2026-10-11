@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface CreateCustomFieldSelectOptionResponseBody {
-    data?: Pylon.CustomFieldDefinitionSelectOption | undefined;
+    data: Pylon.CustomFieldDefinitionSelectOption;
     /** The request ID for tracking. */
     request_id: string;
 }

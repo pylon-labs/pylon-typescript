@@ -3,6 +3,6 @@
 import type * as Pylon from "../index.js";
 
 export interface UpdateAccountHighlightResponseBody {
-    data?: Pylon.AccountHighlight | undefined;
+    data: Pylon.AccountHighlight;
     request_id: string;
 }

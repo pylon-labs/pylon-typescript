@@ -3,7 +3,7 @@
 import type * as Pylon from "../index.js";
 
 export interface GetTagResponseBody {
-    data?: Pylon.Tag | undefined;
+    data: Pylon.Tag;
     /** The request ID for tracking. */
     request_id: string;
 }
