@@ -37,7 +37,15 @@ jobs:
           VERSION: ${{ inputs.version }}
           GH_TOKEN: ${{ github.token }}
         run: |
+          previous=$(jq -r .version package.json)
           npm version "$VERSION" --no-git-tag-version
+          # The User-Agent names the version; the next sync regenerates it from package.json.
+          sed -i "s|\"@usepylon/sdk/$previous\"|\"@usepylon/sdk/$VERSION\"|" src/BaseClient.ts
+          if ! grep -qF "\"@usepylon/sdk/$VERSION\"" src/BaseClient.ts; then
+            echo "::error::src/BaseClient.ts has no @usepylon/sdk/$previous User-Agent to update"
+            exit 1
+          fi
+          npm run build
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -am "Release v$VERSION"
