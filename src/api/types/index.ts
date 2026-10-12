@@ -231,6 +231,7 @@ export * from "./SelectMetadata.js";
 export * from "./SetFeatureRequestPortalVisibilityResponseBody.js";
 export * from "./SkippedIssue.js";
 export * from "./SlackInfo.js";
+export * from "./SlackMessageInfo.js";
 export * from "./SlaTimes.js";
 export * from "./SnoozeIssueResponseBody.js";
 export * from "./SubmitTicketFormField.js";

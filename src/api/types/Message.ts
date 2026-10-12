@@ -15,6 +15,7 @@ export interface Message {
     is_private: boolean;
     /** The HTML body of the message. */
     message_html: string;
+    slack_info?: Pylon.SlackMessageInfo | undefined;
     /** The source of the message. */
     source: string;
     /** The Pylon internal thread ID. This is set only for internal notes and can be passed as thread_id when creating an internal note. */
