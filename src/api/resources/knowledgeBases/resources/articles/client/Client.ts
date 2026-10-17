@@ -175,7 +175,6 @@ export class ArticlesClient {
      *     await client.knowledgeBases.articles.create({
      *         knowledge_base_id: "id",
      *         author_user_id: "author_user_id",
-     *         body_html: "body_html",
      *         title: "title"
      *     })
      */

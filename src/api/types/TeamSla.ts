@@ -5,6 +5,8 @@ import type * as Pylon from "../index.js";
 export interface TeamSla {
     first_resolution?: Pylon.SlaTimes | undefined;
     first_response?: Pylon.SlaTimes | undefined;
+    follow_up?: Pylon.SlaTimes | undefined;
+    next_reply?: Pylon.SlaTimes | undefined;
     resolution?: Pylon.SlaTimes | undefined;
     /** The ID of the team these are scoped to. */
     team_id: string;
