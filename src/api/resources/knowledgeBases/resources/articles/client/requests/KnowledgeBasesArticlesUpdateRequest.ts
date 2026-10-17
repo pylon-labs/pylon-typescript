@@ -18,6 +18,8 @@ export interface KnowledgeBasesArticlesUpdateRequest {
     author_user_id?: string;
     /** The HTML body of the article. Saved as a new draft; the published article changes only if publish_updated_body_html or is_published is true. */
     body_html?: string;
+    /** The body of the article in markdown, instead of body_html. Saved and published the same way. */
+    body_markdown?: string;
     /** The ID of the collection containing the article. */
     collection_id?: string;
     /** Whether the article should be published or unpublished. */

@@ -24,6 +24,8 @@ export interface Account {
     is_disabled: boolean;
     /** The time of the latest customer activity. */
     latest_customer_activity_time: string;
+    /** The time of the latest vendor activity. */
+    latest_vendor_activity_time: string;
     /** The logo URL of the account. */
     logo_url: string;
     /** The name of the account. */

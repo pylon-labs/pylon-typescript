@@ -28,6 +28,7 @@ import { TeamsClient } from "./api/resources/teams/client/Client.js";
 import { TicketFormsClient } from "./api/resources/ticketForms/client/Client.js";
 import { TrainingDataClient } from "./api/resources/trainingData/client/Client.js";
 import { UserRolesClient } from "./api/resources/userRoles/client/Client.js";
+import { UserStatusesClient } from "./api/resources/userStatuses/client/Client.js";
 import { UsersClient } from "./api/resources/users/client/Client.js";
 import type { BaseClientOptions, BaseRequestOptions } from "./BaseClient.js";
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "./BaseClient.js";
@@ -69,6 +70,7 @@ export class PylonClient {
     protected _ticketForms: TicketFormsClient | undefined;
     protected _trainingData: TrainingDataClient | undefined;
     protected _userRoles: UserRolesClient | undefined;
+    protected _userStatuses: UserStatusesClient | undefined;
     protected _users: UsersClient | undefined;
 
     constructor(options: PylonClient.Options) {
@@ -185,6 +187,10 @@ export class PylonClient {
 
     public get userRoles(): UserRolesClient {
         return (this._userRoles ??= new UserRolesClient(this._options));
+    }
+
+    public get userStatuses(): UserStatusesClient {
+        return (this._userStatuses ??= new UserStatusesClient(this._options));
     }
 
     public get users(): UsersClient {
