@@ -40,12 +40,17 @@ export interface Issue {
     external_issues?: Pylon.ExternalIssue[] | undefined;
     /** The time of the first resolution of the issue, if any. Frozen at the issue's first resolution and never updated on reopen/re-resolve. */
     first_resolution_time?: (string | null) | undefined;
+    /** The ID of the user the issue was assigned to when its first response SLA breached, if it breached. */
+    first_response_assignee_id_at_breach?: string | undefined;
     /** The time by which the issue's first response SLA will breach, if any. Only present for issues with an active first response SLA. */
     first_response_breach_time?: string | undefined;
+    /** The ID of the user whose action resolved the issue's first response SLA. Absent when resolved by a contact or automation. */
+    first_response_resolving_user_id?: string | undefined;
     /** The time in seconds it took for the first response to the issue, if any. */
     first_response_seconds?: number | undefined;
     /** The time of the first response to the issue, if any. */
     first_response_time?: (string | null) | undefined;
+    follow_up?: Pylon.SlaTimes | undefined;
     /** The ID of the issue. */
     id: string;
     /** Whether this issue is an issue group. */
@@ -54,14 +59,19 @@ export interface Issue {
     latest_message_time?: (string | null) | undefined;
     /** The link to the issue in Pylon. */
     link: string;
+    next_reply?: Pylon.SlaTimes | undefined;
     /** The number of the issue. */
     number: number;
     /** The number of times the issue has been touched. */
     number_of_touches: number;
     parent_issue_group?: Pylon.MiniIssue | undefined;
     requester?: (Pylon.MiniContact | null) | undefined;
+    /** The ID of the user the issue was assigned to when its resolution SLA breached, if it breached. */
+    resolution_assignee_id_at_breach?: string | undefined;
     /** The time by which the issue's resolution SLA will breach, if any. Only present for open issues with an active resolution SLA. */
     resolution_breach_time?: string | undefined;
+    /** The ID of the user whose action resolved the issue's resolution SLA. Absent when resolved by a contact or automation. */
+    resolution_resolving_user_id?: string | undefined;
     /** The time in seconds it took for the issue to be resolved, if any. */
     resolution_seconds?: number | undefined;
     /** The time of the resolution of the issue, if any. */
@@ -96,4 +106,6 @@ export interface Issue {
     updated_at: string;
     /** The email address connected to the Pylon workspace through which the issue's email conversation is routed. For inbound issues, this is the address that received the original email. */
     workspace_email?: string | undefined;
+    /** The WhatsApp, SMS, or voice phone number connected to the Pylon workspace through which the issue's conversation is routed. For inbound issues, this is the number the customer messaged or called. */
+    workspace_phone_number?: string | undefined;
 }

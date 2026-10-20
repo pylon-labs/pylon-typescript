@@ -18,6 +18,8 @@ export interface KnowledgeBasesArticlesUpdateRequest {
     author_user_id?: string;
     /** The HTML body of the article. Saved as a new draft; the published article changes only if publish_updated_body_html or is_published is true. */
     body_html?: string;
+    /** The body of the article in markdown, instead of body_html. Saved and published the same way. */
+    body_markdown?: string;
     /** The ID of the collection containing the article. */
     collection_id?: string;
     /** Whether the article should be published or unpublished. */
@@ -26,6 +28,8 @@ export interface KnowledgeBasesArticlesUpdateRequest {
     is_unlisted?: boolean;
     /** The language code of the translation to update. If not provided, the default language (original article) will be updated. */
     language?: string;
+    /** The zero-based position among the parent's articles and subcollections. Omit to keep the current position, or append when moving to another collection. Positions beyond the end append the article. When collection_id is provided, applies within the destination collection. */
+    position?: number;
     /** Whether to publish the updated body_html. Defaults to false, which leaves the change as a draft. */
     publish_updated_body_html?: boolean;
     /** IDs of article tags to assign. If provided, replaces all tags currently assigned to the article. */

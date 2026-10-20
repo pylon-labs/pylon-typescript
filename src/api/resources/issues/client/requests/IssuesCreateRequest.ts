@@ -62,6 +62,8 @@ export interface IssuesCreateRequest {
     created_at?: string;
     /** An array of custom fields to be used on this issue. */
     custom_fields?: Pylon.CustomFieldValue[];
+    /** The ID of a custom issue source (created in the App Directory under Chat > Add Custom Chat App). Sets the issue source to the custom source's slug. Use this for channels Pylon doesn't natively support (e.g. WeChat). Cannot be combined with destination_metadata. */
+    custom_issue_source_id?: string;
     /** Whether the issue should be visible in the customer portal. When destination is "customer_portal", this is set to true and cannot be false. */
     customer_portal_visible?: boolean;
     destination_metadata?: Pylon.DestinationMetadata;

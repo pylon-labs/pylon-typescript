@@ -7,7 +7,6 @@ import type * as Pylon from "../../../../../../index.js";
  *     {
  *         knowledge_base_id: "id",
  *         author_user_id: "author_user_id",
- *         body_html: "body_html",
  *         title: "title"
  *     }
  */
@@ -16,14 +15,18 @@ export interface KnowledgeBasesArticlesCreateRequest {
     knowledge_base_id: string;
     /** The ID of the user attributed as the author of the article. */
     author_user_id: string;
-    /** The HTML body of the article. */
-    body_html: string;
+    /** The HTML body of the article. Required unless body_markdown is set. */
+    body_html?: string;
+    /** The body of the article in markdown, instead of body_html. */
+    body_markdown?: string;
     /** The ID of the collection containing the article. */
     collection_id?: string;
     /** Whether the article should be published. Defaults to false. */
     is_published?: boolean;
     /** Whether the article is accessible only via a direct link. Defaults to false. */
     is_unlisted?: boolean;
+    /** The zero-based position among the parent's articles and subcollections. Defaults to the end. Positions beyond the end append the article. */
+    position?: number;
     /** The slug of the article. Defaults to a slug based on the title. */
     slug?: string;
     /** The title of the article. */

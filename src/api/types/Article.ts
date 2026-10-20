@@ -12,8 +12,12 @@ export interface Article {
     created_at: string;
     /** The current draft content of the article in HTML. This is the latest version, which may differ from the published version. */
     current_draft_content_html?: string | undefined;
+    /** The current draft content of the article in markdown. This is the latest version, which may differ from the published version. */
+    current_draft_content_markdown?: string | undefined;
     /** The current published content of the article in HTML. */
     current_published_content_html?: string | undefined;
+    /** The current published content of the article in markdown. */
+    current_published_content_markdown?: string | undefined;
     /** The ID of the article. */
     id: string;
     /** The identifier of the article */

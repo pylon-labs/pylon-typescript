@@ -10,8 +10,14 @@
 export interface IssuesCreateDraftReplyRequest {
     /** The ID of the issue. */
     issue_id: string;
+    /** The draft's BCC recipients. See to_emails. */
+    bcc_emails?: string[];
     /** The draft body in HTML. */
     body_html: string;
+    /** The draft's CC recipients. See to_emails. */
+    cc_emails?: string[];
+    /** The draft's To recipients. If any of to_emails, cc_emails, or bcc_emails is provided, the draft uses exactly those lists and an omitted list is saved empty; omit all three to use the composer's default recipients. */
+    to_emails?: string[];
     /** The active Pylon user who should own and see the draft. Defaults to the API-token user when it is a human Pylon user; required for unlinked or service API tokens. */
     user_id?: string;
 }

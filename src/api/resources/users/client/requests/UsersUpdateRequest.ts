@@ -15,16 +15,6 @@ export interface UsersUpdateRequest {
     name?: string;
     /** The role_id of the user. */
     role_id?: string;
-    /** The new user status for the user. Can be one of `active`, `away`, or `out_of_office`. */
-    status?: UsersUpdateRequest.Status;
-}
-
-export namespace UsersUpdateRequest {
-    /** The new user status for the user. Can be one of `active`, `away`, or `out_of_office`. */
-    export const Status = {
-        Active: "active",
-        Away: "away",
-        OutOfOffice: "out_of_office",
-    } as const;
-    export type Status = (typeof Status)[keyof typeof Status];
+    /** The new status for the user: `active`, `away`, `out_of_office`, or a custom status slug from GET /user-statuses. */
+    status?: string;
 }

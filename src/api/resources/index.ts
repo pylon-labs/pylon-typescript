@@ -49,5 +49,6 @@ export * as ticketForms from "./ticketForms/index.js";
 export * from "./trainingData/client/requests/index.js";
 export * as trainingData from "./trainingData/index.js";
 export * as userRoles from "./userRoles/index.js";
+export * as userStatuses from "./userStatuses/index.js";
 export * from "./users/client/requests/index.js";
 export * as users from "./users/index.js";
