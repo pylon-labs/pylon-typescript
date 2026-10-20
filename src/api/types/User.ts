@@ -23,10 +23,6 @@ export interface User {
     role_ids?: (string[] | null) | undefined;
     /** All assigned roles, including SCIM-derived roles, sorted by ID. Empty when no roles are assigned. */
     roles?: (Pylon.MiniRole[] | null) | undefined;
-    /**
-     * The status of the user.
-     *
-     * Known values: ``, `active`, `away`, `out_of_office`. This list is not exhaustive.
-     */
+    /** The status of the user. Standard values are `active`, `away`, and `out_of_office`; custom status slugs are also supported. See GET /user-statuses for each status's category. */
     status: string;
 }

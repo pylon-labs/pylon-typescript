@@ -29,7 +29,7 @@ export interface ImportIssueRequest {
     messages: Pylon.ImportIssueMessage[];
     /** The ID of a partner account that serves account_id. Requires account_id. */
     partner_account_id?: string | undefined;
-    /** ContactID that the issue should be on behalf of. */
+    /** ContactID that the issue should be on behalf of. If omitted, the issue has no requester. */
     requester_id?: string | undefined;
     /** ResolutionTime is the time the issue was resolved (RFC3339). */
     resolution_time?: string | undefined;
