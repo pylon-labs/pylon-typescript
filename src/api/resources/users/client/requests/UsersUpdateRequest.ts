@@ -11,8 +11,16 @@ export interface UsersUpdateRequest {
     id: string;
     /** The avatar URL of the user. Must be a square .png, .jpg or .jpeg. */
     avatar_url?: string;
+    /**
+     * Whether the user is deactivated. Changing it requires admin permissions. Deactivating revokes the user's API tokens, removes their team
+     * schedules and skills, disconnects their calendars, and reassigns their open issues in the background. Reactivating does not
+     * restore any of these. Users provisioned through SCIM must be deactivated and reactivated in the identity provider.
+     */
+    is_deactivated?: boolean;
     /** The name of the user. */
     name?: string;
+    /** The ID of the user to reassign the deactivated user's open issues to. Only valid with `is_deactivated: true`. If omitted, the issues are unassigned. */
+    reassign_open_issues_to_user_id?: string;
     /** The role_id of the user. */
     role_id?: string;
     /** The new status for the user: `active`, `away`, `out_of_office`, or a custom status slug from GET /user-statuses. */
