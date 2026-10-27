@@ -15,6 +15,8 @@ export interface Message {
     is_private: boolean;
     /** The HTML body of the message. */
     message_html: string;
+    /** The emoji reactions currently on the message, grouped by emoji. */
+    reactions?: (Pylon.MessageReaction[] | null) | undefined;
     slack_info?: Pylon.SlackMessageInfo | undefined;
     /** The source of the message. */
     source: string;

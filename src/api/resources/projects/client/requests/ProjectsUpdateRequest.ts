@@ -11,6 +11,8 @@ import type * as Pylon from "../../../../index.js";
 export interface ProjectsUpdateRequest {
     /** The ID of the project to update. */
     id: string;
+    /** Instructions the AI follows when keeping this smart project up to date. Set to an empty string to clear them. */
+    ai_instructions?: string;
     /** An array of custom fields to be used on this project. Only passed in fields will be modified. */
     custom_fields?: Pylon.CustomFieldValue[];
     /** Customer portal visible for this project */

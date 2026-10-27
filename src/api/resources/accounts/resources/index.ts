@@ -1,5 +1,7 @@
 export * from "./activities/client/requests/index.js";
 export * as activities from "./activities/index.js";
+export * from "./emailActivities/client/requests/index.js";
+export * as emailActivities from "./emailActivities/index.js";
 export * from "./highlights/client/requests/index.js";
 export * as highlights from "./highlights/index.js";
 export * as notebookBlocks from "./notebookBlocks/index.js";

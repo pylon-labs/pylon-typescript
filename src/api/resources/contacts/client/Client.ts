@@ -252,6 +252,113 @@ export class ContactsClient {
     }
 
     /**
+     * Merges a contact into a surviving contact. If the merged contact belongs to a different account, it is first moved to the surviving contact's account. Issues, emails, phone numbers, survey responses, and other associated data are then transferred to the surviving contact, and the merged contact is permanently deleted. This cannot be undone.
+     *
+     * **Rate limit:** 30 requests per minute
+     *
+     * @param {Pylon.ContactsMergeRequest} request
+     * @param {ContactsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Pylon.BadRequestError}
+     * @throws {@link Pylon.UnauthorizedError}
+     * @throws {@link Pylon.ForbiddenError}
+     * @throws {@link Pylon.NotFoundError}
+     * @throws {@link Pylon.TooManyRequestsError}
+     * @throws {@link Pylon.InternalServerError}
+     * @throws {@link errors.PylonError}
+     * @throws {@link errors.PylonTimeoutError}
+     *
+     * @example
+     *     await client.contacts.merge({
+     *         merge_contact_id: "merge_contact_id",
+     *         merge_into_contact_id: "merge_into_contact_id"
+     *     })
+     */
+    public merge(
+        request: Pylon.ContactsMergeRequest,
+        requestOptions?: ContactsClient.RequestOptions,
+    ): core.HttpResponsePromise<Pylon.MergeContactsResponseBody> {
+        return core.HttpResponsePromise.fromPromise(this.__merge(request, requestOptions));
+    }
+
+    private async __merge(
+        request: Pylon.ContactsMergeRequest,
+        requestOptions?: ContactsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Pylon.MergeContactsResponseBody>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PylonEnvironment.Us,
+                "contacts/merge",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: mergeAdditionalBodyParameters(request, requestOptions?.additionalBodyParameters),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: 0,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Pylon.MergeContactsResponseBody, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Pylon.BadRequestError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Pylon.UnauthorizedError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Pylon.ForbiddenError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Pylon.NotFoundError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 429:
+                    throw new Pylon.TooManyRequestsError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Pylon.InternalServerError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PylonError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/contacts/merge");
+    }
+
+    /**
      * Filterable fields and their allowed operators:
      *
      *  Field | Allowed operators |

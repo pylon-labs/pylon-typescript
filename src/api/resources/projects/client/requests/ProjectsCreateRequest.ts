@@ -9,6 +9,8 @@
 export interface ProjectsCreateRequest {
     /** Account ID for this project */
     account_id: string;
+    /** Instructions the AI follows when keeping this smart project up to date. Overrides the template's instructions when provided. */
+    ai_instructions?: string;
     /** Customer portal visible for this project */
     customer_portal_visible?: boolean;
     /** Description HTML for this project */
@@ -19,7 +21,7 @@ export interface ProjectsCreateRequest {
     name?: string;
     /** Owner ID for this project */
     owner_id?: string;
-    /** Project template ID for this project. When provided, it supplies defaults; non-empty name and description_html values and supplied customer_portal_visible and owner_id values override them. Supplying either start_date or end_date replaces both template dates. */
+    /** Project template ID for this project. When provided, it supplies defaults; non-empty name and description_html values and supplied ai_instructions, customer_portal_visible, and owner_id values override them. Supplying either start_date or end_date replaces both template dates. */
     project_template_id?: string;
     /** Start date for this project, in RFC 3339 format */
     start_date?: string;
