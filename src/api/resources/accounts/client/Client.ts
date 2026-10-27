@@ -10,6 +10,7 @@ import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCode
 import * as errors from "../../../../errors/index.js";
 import * as Pylon from "../../../index.js";
 import { ActivitiesClient } from "../resources/activities/client/Client.js";
+import { EmailActivitiesClient } from "../resources/emailActivities/client/Client.js";
 import { HighlightsClient } from "../resources/highlights/client/Client.js";
 import { NotebookBlocksClient } from "../resources/notebookBlocks/client/Client.js";
 import { RelationshipsClient } from "../resources/relationships/client/Client.js";
@@ -25,6 +26,7 @@ export class AccountsClient {
     protected _highlights: HighlightsClient | undefined;
     protected _relationships: RelationshipsClient | undefined;
     protected _activities: ActivitiesClient | undefined;
+    protected _emailActivities: EmailActivitiesClient | undefined;
     protected _notebookBlocks: NotebookBlocksClient | undefined;
 
     constructor(options: AccountsClient.Options) {
@@ -41,6 +43,10 @@ export class AccountsClient {
 
     public get activities(): ActivitiesClient {
         return (this._activities ??= new ActivitiesClient(this._options));
+    }
+
+    public get emailActivities(): EmailActivitiesClient {
+        return (this._emailActivities ??= new EmailActivitiesClient(this._options));
     }
 
     public get notebookBlocks(): NotebookBlocksClient {

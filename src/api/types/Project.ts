@@ -4,6 +4,8 @@ import type * as Pylon from "../index.js";
 
 export interface Project {
     account?: Pylon.MiniAccount | undefined;
+    /** Instructions the AI follows when keeping this smart project up to date. */
+    ai_instructions: string;
     /** The archived at time of the project in RFC3339 format. */
     archived_at?: string | undefined;
     /** The created at time of the project. */

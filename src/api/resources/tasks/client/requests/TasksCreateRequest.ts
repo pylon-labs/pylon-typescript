@@ -11,8 +11,12 @@ import type * as Pylon from "../../../../index.js";
 export interface TasksCreateRequest {
     /** Account ID for this task */
     account_id?: string;
+    /** Instructions the AI follows when evaluating this task in a smart project */
+    ai_instructions?: string;
     /** Assignee ID for this task */
     assignee_id?: string;
+    /** IDs of existing tasks that block this task */
+    blocked_by_task_ids?: string[];
     /** Body HTML for this task */
     body_html?: string;
     /** An array of custom fields to be used on this task. */

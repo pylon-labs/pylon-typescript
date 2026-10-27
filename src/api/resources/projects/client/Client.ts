@@ -24,7 +24,7 @@ export class ProjectsClient {
     }
 
     /**
-     * Creates a new project for an account. Provide a name or project_template_id. A template supplies defaults; non-empty name and description_html values and supplied customer_portal_visible and owner_id values override them. Supplying either start_date or end_date replaces both template dates.
+     * Creates a new project for an account. Provide a name or project_template_id. A template supplies defaults; non-empty name and description_html values and supplied ai_instructions, customer_portal_visible, and owner_id values override them. Supplying either start_date or end_date replaces both template dates.
      *
      * **Rate limit:** 300 requests per minute
      *

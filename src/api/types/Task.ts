@@ -4,7 +4,13 @@ import type * as Pylon from "../index.js";
 
 export interface Task {
     account?: Pylon.MiniAccount | undefined;
+    /** Instructions the AI follows when evaluating this task in a smart project. */
+    ai_instructions: string;
     assignee?: Pylon.Actor | undefined;
+    /** The IDs of tasks that block this task. */
+    blocked_by_task_ids?: (string[] | null) | undefined;
+    /** The IDs of tasks that this task blocks. */
+    blocks_task_ids?: (string[] | null) | undefined;
     /** The body of the task in HTML format. */
     body_html: string;
     /** The completion time of the task in RFC3339 format. */

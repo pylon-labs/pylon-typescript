@@ -11,8 +11,12 @@ import type * as Pylon from "../../../../index.js";
 export interface TasksUpdateRequest {
     /** The ID of the task to update. */
     id: string;
+    /** Instructions the AI follows when evaluating this task in a smart project. Set to an empty string to clear them. */
+    ai_instructions?: string;
     /** Assignee ID for this task */
     assignee_id?: string;
+    /** IDs of the tasks that block this task. If provided, replaces the task's current blocking tasks; pass an empty array to remove them all. */
+    blocked_by_task_ids?: string[];
     /** Body HTML for this task */
     body_html?: string;
     /** Completed at time for this task, in RFC 3339 format. The task must already have a completed status and completion date. */
