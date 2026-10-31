@@ -3,6 +3,8 @@
 import type * as Pylon from "../index.js";
 
 export interface TicketFormLayoutField {
+    /** The ID of the custom field definition. Set only when type is custom_field. */
+    custom_field_id?: string | undefined;
     /** The description of the ticket form layout field in HTML. */
     description_html: string;
     /**
