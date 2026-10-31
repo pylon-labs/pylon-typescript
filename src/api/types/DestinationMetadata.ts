@@ -24,6 +24,8 @@ export interface DestinationMetadata {
     from_sms_phone_number_id?: string | undefined;
     /** The configured WhatsApp phone number to send messages from. Required if destination is "whatsapp" unless whatsapp_app_id is provided. The number is normalized and used to resolve the WhatsApp app within the organization. */
     from_whatsapp_phone_number?: string | undefined;
+    /** The ID of the Slack channel to start the conversation in, as returned in the account's `channels[].channel_id`. Only valid when destination is "slack". Must be a non-internal Slack channel connected to the issue's account. Defaults to the account's primary Slack channel. */
+    slack_channel_id?: string | undefined;
     /** The ID of the WhatsApp app to send messages from. Required if destination is "whatsapp" unless from_whatsapp_phone_number is provided. Deprecated: Use from_whatsapp_phone_number instead. */
     whatsapp_app_id?: string | undefined;
     /** The language of the WhatsApp message template to use. Required if destination is "whatsapp". */
