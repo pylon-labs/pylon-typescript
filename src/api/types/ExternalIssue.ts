@@ -9,8 +9,16 @@ export interface ExternalIssue {
      * Asana: ID of the task (Long number).
      */
     external_id: string;
+    /** The human-readable key of the external issue, such as ENG-123 for Linear or Jira. */
+    key?: string | undefined;
     /** Link to the product issue. */
     link: string;
     /** The source of the external issue. */
     source: string;
+    /**
+     * Whether the external issue is open, closed (done), or canceled, as last synced from the source.
+     *
+     * Known values: `open`, `closed`, `canceled`. This list is not exhaustive.
+     */
+    state?: string | undefined;
 }

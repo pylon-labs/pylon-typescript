@@ -6,21 +6,23 @@ export interface Filter {
     /**
      * The field for this filter.  For allowed fields, see the documentation for
      * the specific endpoint you are using.
-     * For non-compound filters (any operators other than "and" or "or"),
+     * For non-compound filters (any operators other than "and", "or", or "not"),
      * field must be set, along with either value or values, depending on the operator.
      */
     field?: string | undefined;
     /** The operator for this filter. */
     operator: Filter.Operator;
     /**
-     * Sub-filters for this filter.  Valid only when operator is "and" or "or".
-     * The maximum allowed depth for a tree of filters is 3, counting the top-level filter.
+     * Sub-filters for this filter.  Valid only when operator is "and", "or", or "not"; "not"
+     * takes exactly one subfilter.
+     * The maximum allowed depth for a tree of filters is 5, counting the top-level filter.
      */
     subfilters?: Pylon.Filter[] | undefined;
     /**
      * The value for this filter. Used by single-valued operators: "equals", "not_equals",
      * "contains", "does_not_contain", "string_contains", "string_does_not_contain",
-     * "starts_with", "ends_with", "time_is_after", "time_is_before", "greater_than",
+     * "starts_with", "ends_with", "time_is_after", "time_is_before", "time_is_in_last",
+     * "time_is_not_in_last", "time_is_in_next", "time_is_not_in_next", "greater_than",
      * "less_than", "greater_than_or_equals", and "less_than_or_equals".
      */
     value?: string | undefined;
@@ -42,6 +44,7 @@ export namespace Filter {
         NotIn: "not_in",
         And: "and",
         Or: "or",
+        Not: "not",
         TimeIsAfter: "time_is_after",
         TimeIsBefore: "time_is_before",
         TimeRange: "time_range",
@@ -56,6 +59,10 @@ export namespace Filter {
         IncludesAllOf: "includes_all_of",
         StartsWith: "starts_with",
         EndsWith: "ends_with",
+        TimeIsInLast: "time_is_in_last",
+        TimeIsNotInLast: "time_is_not_in_last",
+        TimeIsInNext: "time_is_in_next",
+        TimeIsNotInNext: "time_is_not_in_next",
     } as const;
     export type Operator = (typeof Operator)[keyof typeof Operator];
 }

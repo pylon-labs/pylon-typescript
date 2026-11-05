@@ -333,6 +333,112 @@ export class TeamsClient {
     }
 
     /**
+     * Delete an existing team
+     * Deletes a team and its memberships and schedules. Subteams are detached and remain available.
+     * Teams referenced by other configuration or owning internal accounts cannot be deleted until those references are removed.
+     *
+     * **Rate limit:** 30 requests per minute
+     *
+     * @param {Pylon.TeamsDeleteRequest} request
+     * @param {TeamsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Pylon.BadRequestError}
+     * @throws {@link Pylon.UnauthorizedError}
+     * @throws {@link Pylon.ForbiddenError}
+     * @throws {@link Pylon.NotFoundError}
+     * @throws {@link Pylon.TooManyRequestsError}
+     * @throws {@link Pylon.InternalServerError}
+     * @throws {@link errors.PylonError}
+     * @throws {@link errors.PylonTimeoutError}
+     *
+     * @example
+     *     await client.teams.delete({
+     *         id: "id"
+     *     })
+     */
+    public delete(
+        request: Pylon.TeamsDeleteRequest,
+        requestOptions?: TeamsClient.RequestOptions,
+    ): core.HttpResponsePromise<Pylon.DeleteTeamResponseBody> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(request, requestOptions));
+    }
+
+    private async __delete(
+        request: Pylon.TeamsDeleteRequest,
+        requestOptions?: TeamsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Pylon.DeleteTeamResponseBody>> {
+        const { id } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PylonEnvironment.Us,
+                `teams/${core.url.encodePathParam(id)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Pylon.DeleteTeamResponseBody, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Pylon.BadRequestError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Pylon.UnauthorizedError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Pylon.ForbiddenError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Pylon.NotFoundError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 429:
+                    throw new Pylon.TooManyRequestsError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Pylon.InternalServerError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PylonError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/teams/{id}");
+    }
+
+    /**
      * Updates an existing team, including how it assigns issues and its recurring assignment
      * schedule. Only provided fields are modified; supplying schedule.blocks replaces the whole
      * rotation, and omitting it leaves the rotation unchanged.

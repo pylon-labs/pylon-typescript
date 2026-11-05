@@ -8,6 +8,11 @@ export interface ArticleVisibilityConfig {
     /** List of AI agent IDs that may access this resource when ai_agent_access is set to "specific_agents". */
     allowed_agent_ids?: string[] | undefined;
     customer_visibility_condition?: Pylon.Filter | undefined;
+    /**
+     * Read-only. True when the article's customer visibility condition cannot be expressed in the
+     * API filter format. The condition still applies, but customer_visibility_condition is omitted.
+     */
+    customer_visibility_condition_unsupported?: boolean | undefined;
     /** The visibility setting. */
     visibility?: ArticleVisibilityConfig.Visibility | undefined;
 }

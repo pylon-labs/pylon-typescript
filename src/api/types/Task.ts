@@ -27,6 +27,8 @@ export interface Task {
     external_issues?: Pylon.ExternalIssue[] | undefined;
     /** The ID of the task. */
     id: string;
+    /** The link to the task in the Pylon app. Requires Pylon app access. */
+    link: string;
     /** The Pylon issues linked to the task that the current user can access, if any. */
     linked_issues?: Pylon.MiniIssue[] | undefined;
     milestone?: Pylon.MiniMilestone | undefined;

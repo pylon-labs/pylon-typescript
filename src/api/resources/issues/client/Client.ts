@@ -225,6 +225,17 @@ export class IssuesClient {
      *
      * @example
      *     await client.issues.create({
+     *         account_id: "acc_123",
+     *         body_html: "<p>We are scheduling maintenance for this weekend.</p>",
+     *         destination_metadata: {
+     *             destination: "slack",
+     *             slack_channel_id: "C0123456789"
+     *         },
+     *         title: "Maintenance window"
+     *     })
+     *
+     * @example
+     *     await client.issues.create({
      *         body_html: "<p>Your order is ready.</p>",
      *         destination_metadata: {
      *             destination: "whatsapp",

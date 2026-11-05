@@ -252,7 +252,7 @@ export class ContactsClient {
     }
 
     /**
-     * Merges a contact into a surviving contact. If the merged contact belongs to a different account, it is first moved to the surviving contact's account. Issues, emails, phone numbers, survey responses, and other associated data are then transferred to the surviving contact, and the merged contact is permanently deleted. This cannot be undone.
+     * Merges a contact into a surviving contact. Both contacts must belong to the same account, unless the merged contact has no account, in which case it is first moved to the surviving contact's account. Issues, emails, phone numbers, survey responses, and other associated data are then transferred to the surviving contact, and the merged contact is permanently deleted. This cannot be undone.
      *
      * **Rate limit:** 30 requests per minute
      *
@@ -784,5 +784,117 @@ export class ContactsClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "PATCH", "/contacts/{id}");
+    }
+
+    /**
+     * Sends or resends a portal invitation to the contact's primary email. The portal must be enabled and the contact must already have portal access. Does not change the contact's role. Requires customer portal settings write permission and write access to the contact's primary account, if any. Each successful call requests another invitation; success does not guarantee email delivery.
+     *
+     * **Rate limit:** 30 requests per minute
+     *
+     * @param {Pylon.ContactsPortalInvitationRequest} request
+     * @param {ContactsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Pylon.BadRequestError}
+     * @throws {@link Pylon.UnauthorizedError}
+     * @throws {@link Pylon.ForbiddenError}
+     * @throws {@link Pylon.NotFoundError}
+     * @throws {@link Pylon.TooManyRequestsError}
+     * @throws {@link Pylon.InternalServerError}
+     * @throws {@link errors.PylonError}
+     * @throws {@link errors.PylonTimeoutError}
+     *
+     * @example
+     *     await client.contacts.portalInvitation({
+     *         contact_id: "id"
+     *     })
+     */
+    public portalInvitation(
+        request: Pylon.ContactsPortalInvitationRequest,
+        requestOptions?: ContactsClient.RequestOptions,
+    ): core.HttpResponsePromise<Pylon.SendCustomerPortalInvitationResponseBody> {
+        return core.HttpResponsePromise.fromPromise(this.__portalInvitation(request, requestOptions));
+    }
+
+    private async __portalInvitation(
+        request: Pylon.ContactsPortalInvitationRequest,
+        requestOptions?: ContactsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Pylon.SendCustomerPortalInvitationResponseBody>> {
+        const { contact_id: contactId } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PylonEnvironment.Us,
+                `contacts/${core.url.encodePathParam(contactId)}/portal-invitation`,
+            ),
+            method: "POST",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: 0,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Pylon.SendCustomerPortalInvitationResponseBody,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Pylon.BadRequestError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Pylon.UnauthorizedError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Pylon.ForbiddenError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Pylon.NotFoundError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 429:
+                    throw new Pylon.TooManyRequestsError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Pylon.InternalServerError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PylonError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/contacts/{contact_id}/portal-invitation",
+        );
     }
 }
