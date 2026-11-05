@@ -10,6 +10,6 @@
 export interface ContactsMergeRequest {
     /** The ID of the contact to merge into the surviving contact. This contact is permanently deleted after its data is transferred. */
     merge_contact_id: string;
-    /** The ID of the contact that will survive the merge and receive the merged data. The contact must belong to an account. */
+    /** The ID of the contact that will survive the merge and receive the merged data. If the merged contact belongs to an account, this contact must belong to the same account. */
     merge_into_contact_id: string;
 }

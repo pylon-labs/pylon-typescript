@@ -11,6 +11,8 @@ export interface VoiceCall {
     from_phone_number: string;
     /** The ID of the voice call. */
     id: string;
+    /** Everyone who was dialed into the call, one entry per call leg, so a person who is redialed appears again. Empty when the call has no participant records. */
+    participants?: (Pylon.VoiceCallParticipant[] | null) | undefined;
     /** Recordings produced for this call. */
     recordings?: (Pylon.VoiceCallRecording[] | null) | undefined;
     /** The phone number that was dialed. */

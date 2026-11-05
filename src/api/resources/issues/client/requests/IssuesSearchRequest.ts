@@ -20,4 +20,6 @@ export interface IssuesSearchRequest {
     limit?: number;
     /** Fuzzy text search. Results are intersected with any provided filter. */
     search_text?: string;
+    /** The order of results, as a list of sort keys. Only one sort key is supported right now. Omit for the default order. Send the same sort with every page of a cursor. */
+    sort?: Pylon.SearchIssuesSort[];
 }
