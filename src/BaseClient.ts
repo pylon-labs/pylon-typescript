@@ -64,7 +64,7 @@ export function normalizeClientOptions<T extends BaseClientOptions = BaseClientO
     const headers = mergeHeaders(
         {
             "X-Fern-Language": "JavaScript",
-            "User-Agent": "@usepylon/sdk/0.1.0-alpha.5",
+            "User-Agent": "@usepylon/sdk/0.1.0-beta.1",
             "X-Fern-Runtime": core.RUNTIME.type,
             "X-Fern-Runtime-Version": core.RUNTIME.version,
         },
