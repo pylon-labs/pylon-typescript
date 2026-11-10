@@ -7,6 +7,7 @@ import { AttachmentsClient } from "./api/resources/attachments/client/Client.js"
 import { AuditLogsClient } from "./api/resources/auditLogs/client/Client.js";
 import { CallRecordingsClient } from "./api/resources/callRecordings/client/Client.js";
 import { ContactsClient } from "./api/resources/contacts/client/Client.js";
+import { CustomerPortalClient } from "./api/resources/customerPortal/client/Client.js";
 import { CustomFieldsClient } from "./api/resources/customFields/client/Client.js";
 import { CustomObjectsClient } from "./api/resources/customObjects/client/Client.js";
 import { EmailSuppressionsClient } from "./api/resources/emailSuppressions/client/Client.js";
@@ -51,6 +52,7 @@ export class PylonClient {
     protected _contacts: ContactsClient | undefined;
     protected _customFields: CustomFieldsClient | undefined;
     protected _customObjects: CustomObjectsClient | undefined;
+    protected _customerPortal: CustomerPortalClient | undefined;
     protected _emailSuppressions: EmailSuppressionsClient | undefined;
     protected _featureRequests: FeatureRequestsClient | undefined;
     protected _issueGroups: IssueGroupsClient | undefined;
@@ -111,6 +113,10 @@ export class PylonClient {
 
     public get customObjects(): CustomObjectsClient {
         return (this._customObjects ??= new CustomObjectsClient(this._options));
+    }
+
+    public get customerPortal(): CustomerPortalClient {
+        return (this._customerPortal ??= new CustomerPortalClient(this._options));
     }
 
     public get emailSuppressions(): EmailSuppressionsClient {

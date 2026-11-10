@@ -11,6 +11,8 @@ export * from "./callRecordings/client/requests/index.js";
 export * as callRecordings from "./callRecordings/index.js";
 export * from "./contacts/client/requests/index.js";
 export * as contacts from "./contacts/index.js";
+export * from "./customerPortal/client/requests/index.js";
+export * as customerPortal from "./customerPortal/index.js";
 export * from "./customFields/client/requests/index.js";
 export * as customFields from "./customFields/index.js";
 export * from "./customFields/types/index.js";

@@ -10,8 +10,9 @@ export interface Filter {
      * field must be set, along with either value or values, depending on the operator.
      */
     field?: string | undefined;
-    /** The operator for this filter. */
-    operator: Filter.Operator;
+    /** The operator for this filter. Required unless related_object is set. */
+    operator?: Filter.Operator | undefined;
+    related_object?: Pylon.FilterRelatedObject | undefined;
     /**
      * Sub-filters for this filter.  Valid only when operator is "and", "or", or "not"; "not"
      * takes exactly one subfilter.
@@ -24,6 +25,8 @@ export interface Filter {
      * "starts_with", "ends_with", "time_is_after", "time_is_before", "time_is_in_last",
      * "time_is_not_in_last", "time_is_in_next", "time_is_not_in_next", "greater_than",
      * "less_than", "greater_than_or_equals", and "less_than_or_equals".
+     * On fields that hold user IDs, "current_user" means the API token's user; on fields that
+     * hold team IDs, "my_teams" means that user's teams. The same applies to values.
      */
     value?: string | undefined;
     /**
@@ -34,7 +37,7 @@ export interface Filter {
 }
 
 export namespace Filter {
-    /** The operator for this filter. */
+    /** The operator for this filter. Required unless related_object is set. */
     export const Operator = {
         Equals: "equals",
         NotEquals: "not_equals",
