@@ -14,9 +14,17 @@ export interface TicketFormLayoutField {
     hidden: boolean;
     /** The name of the ticket form layout field. */
     name: string;
+    /**
+     * The URL query parameter used to prefill this field on the public form.
+     * Derived from the form's display label and changes when that label is renamed.
+     */
+    prefill_key: string;
     /** Indicates whether the field is required when submitting the ticket form. */
     required: boolean;
-    /** The slug of the ticket form layout field. */
+    /**
+     * The field identifier used for API submissions and visibility conditions.
+     * For custom fields, this is the underlying custom-field slug.
+     */
     slug: string;
     /** The type of the ticket form layout field. */
     type: string;
