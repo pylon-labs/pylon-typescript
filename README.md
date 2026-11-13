@@ -2,7 +2,7 @@
 
 The official TypeScript SDK for the [Pylon API](https://docs.usepylon.com).
 
-> **Alpha.** The SDK is new and its interface may change between `0.x` releases.
+> **Beta.** The SDK's interface may still change between `0.x` releases.
 
 ## Installation
 
