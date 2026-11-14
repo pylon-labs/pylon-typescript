@@ -12,7 +12,7 @@ export interface EmailSuppression {
     /**
      * Why the address is suppressed.
      *
-     * Known values: `hard_bounce`, `manual`. This list is not exhaustive.
+     * Known values: `hard_bounce`, `manual`, `spam_complaint`. This list is not exhaustive.
      */
     reason: string;
 }

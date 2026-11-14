@@ -13,4 +13,6 @@ export interface IssuesMessagesListRequest {
     cursor?: string;
     /** The number of messages to fetch. Must be greater than 0 and at most 1000. If omitted, all messages are returned for backward compatibility. */
     limit?: number;
+    /** Return only customer-visible messages, excluding internal notes and hidden messages. Clears BCC recipients, email-open tracking, Slack metadata, internal thread IDs, and the author's internal user email. Defaults to false. This does not enforce a portal visitor's ticket access or portal identity settings; callers must authorize their customers separately. */
+    public_only?: boolean;
 }

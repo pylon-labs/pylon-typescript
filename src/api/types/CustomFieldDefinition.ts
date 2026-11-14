@@ -5,6 +5,7 @@ import type * as Pylon from "../index.js";
 export interface CustomFieldDefinition {
     /** When the custom field was created. */
     created_at: string;
+    created_by?: (Pylon.CustomFieldActor | null) | undefined;
     /** The default value for single-valued custom fields. */
     default_value?: string | undefined;
     /** The default values for multi-valued custom fields. */
@@ -13,13 +14,20 @@ export interface CustomFieldDefinition {
     description: string;
     /** The ID of the custom field. */
     id: string;
+    /** Field-wide instructions for how AI populates the field. */
+    instructions: string;
+    /** Whether AI is enabled for the field. */
+    is_ai_enabled: boolean;
     /** Whether the custom field is read only. Fields synced from apps and integrations are read-only. */
     is_read_only: boolean;
+    /** JSON schema for structured web research results, when configured. */
+    json_schema?: string | undefined;
     /** The label of the custom field. */
     label: string;
     number_metadata?: Pylon.NumberMetadata | undefined;
     /** The type of object this custom field is for. This can be a built-in or custom object type. */
     object_type: string;
+    requirement?: (Pylon.CustomFieldRequirement | null) | undefined;
     select_metadata?: Pylon.SelectMetadata | undefined;
     /** The slug of the custom field. */
     slug: string;
@@ -29,4 +37,7 @@ export interface CustomFieldDefinition {
     type: string;
     /** When the custom field was last updated. */
     updated_at: string;
+    updated_by?: (Pylon.CustomFieldActor | null) | undefined;
+    /** Whether the custom field shows on records in Pylon by default. When false, it shows only where a field visibility condition makes it visible. */
+    visible_by_default: boolean;
 }

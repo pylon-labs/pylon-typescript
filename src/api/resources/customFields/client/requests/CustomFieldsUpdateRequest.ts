@@ -11,16 +11,27 @@ import type * as Pylon from "../../../../index.js";
 export interface CustomFieldsUpdateRequest {
     /** The ID of the custom field. */
     id: string;
+    /** Options to add without replacing existing options or changing existing labels and AI criteria. Cannot be combined with select_options. */
+    add_select_options?: Pylon.CustomFieldDefinitionSelectOption[];
     /** The default value for single-valued custom fields. */
     default_value?: string;
     /** The default values for multi-valued custom fields. */
     default_values?: string[];
     /** The description of the custom field. */
     description?: string;
+    /** Field-wide instructions for how AI should populate the field. An empty string clears saved instructions when AI is disabled. */
+    instructions?: string;
+    /** Whether AI should populate the field. Omit to preserve the current setting. */
+    is_ai_enabled?: boolean;
     /** The label of the custom field. */
     label?: string;
+    /** AI selection criteria keyed by exact option slug. Omitted options are preserved; an empty string clears an option's criteria. */
+    option_descriptions?: Record<string, string>;
+    requirement?: Pylon.UpdateCustomFieldRequirement;
     /** The complete list of options for a select or multiselect custom field. Options missing from the list are deleted and their stored values are cleared asynchronously. Prefer the dedicated select option endpoints, which can rename an option without losing stored values. */
     select_options?: Pylon.CustomFieldDefinitionSelectOption[];
     /** The slug of the custom field. */
     slug?: string;
+    /** Whether the custom field shows on records in Pylon by default. When false, it shows only where a field visibility condition makes it visible. Omit to keep the current setting. */
+    visible_by_default?: boolean;
 }

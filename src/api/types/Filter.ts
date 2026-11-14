@@ -30,8 +30,8 @@ export interface Filter {
      */
     value?: string | undefined;
     /**
-     * The values for this filter. Used by multi-valued operators: "in", "not_in", and
-     * "includes_all_of". For "time_range", set to [start, end].
+     * The values for this filter. Used by multi-valued operators: "in", "not_in", "includes_all_of",
+     * "includes_exactly", "belongs_to", and "not_belongs_to". For "time_range", set to [start, end].
      */
     values?: string[] | undefined;
 }
@@ -66,6 +66,9 @@ export namespace Filter {
         TimeIsNotInLast: "time_is_not_in_last",
         TimeIsInNext: "time_is_in_next",
         TimeIsNotInNext: "time_is_not_in_next",
+        IncludesExactly: "includes_exactly",
+        BelongsTo: "belongs_to",
+        NotBelongsTo: "not_belongs_to",
     } as const;
     export type Operator = (typeof Operator)[keyof typeof Operator];
 }

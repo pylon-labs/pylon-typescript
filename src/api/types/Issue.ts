@@ -32,6 +32,8 @@ export interface Issue {
     csat_responses?: Pylon.CsatResponse[] | undefined;
     /** Custom field values associated with the issue. */
     custom_fields?: (Record<string, Pylon.CustomFieldValue | null> | null) | undefined;
+    /** The customer-facing title displayed in the customer portal, separate from the internal issue title. */
+    customer_portal_title: string;
     /** Whether the issue is visible in the customer portal. */
     customer_portal_visible: boolean;
     /** Incidents from incident.io or Rootly linked to this issue. */
