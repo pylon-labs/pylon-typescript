@@ -153,7 +153,13 @@ export class CallRecordingsClient {
      *  `title` | `equals`, `string_contains` |
      *  `start_time` | `time_is_after`, `time_is_before`, `time_range` |
      *
-     * Timestamp values use RFC3339 format.
+     * ### Filter syntax and operators
+     *
+     * See [Search filters](https://docs.usepylon.com/pylon-docs/developer/api/conventions#search-filters) for filter structure and operator definitions. The table above lists the operators supported by each field.
+     *
+     * ### Timestamp values
+     *
+     * Timestamp values use RFC 3339 format, such as `2026-10-01T00:00:00Z`.
      *
      * **Rate limit:** 120 requests per minute
      *

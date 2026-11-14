@@ -9,6 +9,6 @@ import type * as Pylon from "../../../../index.js";
  *     }
  */
 export interface CustomFieldsListRequest {
-    /** The object type of the custom fields. Can be "account", "issue", "contact", "task", "project", "meeting", or "opportunity". */
+    /** The object type of the custom fields. Can be "account", "issue", "contact", "task", "project", "meeting", "opportunity", or "feature_request". */
     object_type: Pylon.ListCustomFieldsRequestObjectType;
 }

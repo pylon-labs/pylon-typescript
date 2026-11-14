@@ -17,20 +17,26 @@ export interface CustomFieldsCreateRequest {
     default_values?: string[];
     /** The description of the custom field. */
     description?: string;
+    /** Field-wide instructions for how AI should populate the field. For AI-enabled fields, an empty value falls back to description. */
+    instructions?: string;
+    /** Whether AI should populate the field. Web research fields are always AI-enabled. */
+    is_ai_enabled?: boolean;
+    /** JSON schema for structured web research results. Required for contact web research fields. */
+    json_schema?: string;
     /** The label of the custom field. */
     label: string;
-    /** The object type of the custom field. Can be "account", "issue", "contact", "task", "project", "meeting", or "opportunity". */
+    /** The object type of the custom field. Can be "account", "issue", "contact", "task", "project", "meeting", "opportunity", or "feature_request". */
     object_type: CustomFieldsCreateRequest.ObjectType;
     /** The list options of the select custom field. This is only present for select and multiselect custom fields. */
     select_options?: Pylon.CustomFieldDefinitionSelectOption[];
     /** The slug of the custom field. */
     slug?: string;
-    /** The type of the custom field. Can be one of `text`, `number`, `decimal`, `boolean`, `date`, `datetime`, `user`, `url`, `select`, or `multiselect`. */
+    /** The type of the custom field. Can be one of `text`, `number`, `boolean`, `date`, `datetime`, `user`, `url`, `select`, `multiselect`, or `web_research`. Number fields accept integers and fractional values, such as 7.4; decimal is not a separate field type. Web research is supported for accounts and for contacts when enabled for the organization. */
     type: string;
 }
 
 export namespace CustomFieldsCreateRequest {
-    /** The object type of the custom field. Can be "account", "issue", "contact", "task", "project", "meeting", or "opportunity". */
+    /** The object type of the custom field. Can be "account", "issue", "contact", "task", "project", "meeting", "opportunity", or "feature_request". */
     export const ObjectType = {
         Account: "account",
         Issue: "issue",
@@ -39,6 +45,7 @@ export namespace CustomFieldsCreateRequest {
         Project: "project",
         Meeting: "meeting",
         Opportunity: "opportunity",
+        FeatureRequest: "feature_request",
     } as const;
     export type ObjectType = (typeof ObjectType)[keyof typeof ObjectType];
 }

@@ -143,7 +143,17 @@ export class MilestonesClient {
      *  `started_at` | `time_is_after`, `time_is_before`, `time_range`, `is_set` |
      *  `completed_at` | `time_is_after`, `time_is_before`, `time_range`, `is_set` |
      *
-     * Timestamp values use RFC3339 format. Milestones belonging to an unlaunched project are not returned.
+     * ### Filter syntax and operators
+     *
+     * See [Search filters](https://docs.usepylon.com/pylon-docs/developer/api/conventions#search-filters) for filter structure and operator definitions. The table above lists the operators supported by each field.
+     *
+     * ### Timestamp values
+     *
+     * Timestamp values use RFC 3339 format, such as `2026-10-01T00:00:00Z`.
+     *
+     * ### Project availability
+     *
+     * Milestones belonging to an unlaunched project are not returned.
      *
      * **Rate limit:** 120 requests per minute
      *

@@ -33,8 +33,10 @@ export interface AccountsUpdateRequest {
     primary_domain?: string;
     /** An array of account IDs to set as this account's subaccounts. If provided, the account's subaccounts become exactly this list; accounts you leave out are detached. */
     subaccount_ids?: string[];
-    /** An array of strings to use as tags on this account. If provided, the accounts tags will be updated to the given tags. */
+    /** An array of strings to use as tags on this account, applied according to tags_apply_mode. By default the account's tags will be updated to the given tags. */
     tags?: string[];
+    /** The mode for applying tags. Valid values: "append_only", "remove_only", "replace". Defaults to "replace". */
+    tags_apply_mode?: AccountsUpdateRequest.TagsApplyMode;
 }
 
 export namespace AccountsUpdateRequest {
@@ -44,4 +46,11 @@ export namespace AccountsUpdateRequest {
         Partner: "partner",
     } as const;
     export type AccountType = (typeof AccountType)[keyof typeof AccountType];
+    /** The mode for applying tags. Valid values: "append_only", "remove_only", "replace". Defaults to "replace". */
+    export const TagsApplyMode = {
+        AppendOnly: "append_only",
+        RemoveOnly: "remove_only",
+        Replace: "replace",
+    } as const;
+    export type TagsApplyMode = (typeof TagsApplyMode)[keyof typeof TagsApplyMode];
 }

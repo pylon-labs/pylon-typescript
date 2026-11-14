@@ -24,6 +24,109 @@ export class RouteRedirectsClient {
     }
 
     /**
+     * Returns every path redirect in a knowledge base.
+     *
+     * **Rate limit:** 300 requests per minute
+     *
+     * @param {Pylon.knowledgeBases.KnowledgeBasesRouteRedirectsListRequest} request
+     * @param {RouteRedirectsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Pylon.UnauthorizedError}
+     * @throws {@link Pylon.ForbiddenError}
+     * @throws {@link Pylon.NotFoundError}
+     * @throws {@link Pylon.TooManyRequestsError}
+     * @throws {@link Pylon.InternalServerError}
+     * @throws {@link errors.PylonError}
+     * @throws {@link errors.PylonTimeoutError}
+     *
+     * @example
+     *     await client.knowledgeBases.routeRedirects.list({
+     *         knowledge_base_id: "id"
+     *     })
+     */
+    public list(
+        request: Pylon.knowledgeBases.KnowledgeBasesRouteRedirectsListRequest,
+        requestOptions?: RouteRedirectsClient.RequestOptions,
+    ): core.HttpResponsePromise<Pylon.GetRouteRedirectsResponseBody> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Pylon.knowledgeBases.KnowledgeBasesRouteRedirectsListRequest,
+        requestOptions?: RouteRedirectsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Pylon.GetRouteRedirectsResponseBody>> {
+        const { knowledge_base_id: knowledgeBaseId } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PylonEnvironment.Us,
+                `knowledge-bases/${core.url.encodePathParam(knowledgeBaseId)}/route-redirects`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Pylon.GetRouteRedirectsResponseBody, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Pylon.UnauthorizedError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Pylon.ForbiddenError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Pylon.NotFoundError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 429:
+                    throw new Pylon.TooManyRequestsError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Pylon.InternalServerError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PylonError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/knowledge-bases/{knowledge_base_id}/route-redirects",
+        );
+    }
+
+    /**
      * Creates a path redirect within a knowledge base, mapping a source path to an article or collection.
      *
      * **Rate limit:** 30 requests per minute
@@ -45,7 +148,6 @@ export class RouteRedirectsClient {
      *     await client.knowledgeBases.routeRedirects.create({
      *         knowledge_base_id: "id",
      *         from_path: "from_path",
-     *         object_id: "object_id",
      *         object_type: "object_type"
      *     })
      */
@@ -144,6 +246,113 @@ export class RouteRedirectsClient {
             _response.rawResponse,
             "POST",
             "/knowledge-bases/{knowledge_base_id}/route-redirects",
+        );
+    }
+
+    /**
+     * Deletes a path redirect from a knowledge base. Requires knowledge base admin permission.
+     *
+     * **Rate limit:** 30 requests per minute
+     *
+     * @param {Pylon.knowledgeBases.KnowledgeBasesRouteRedirectsDeleteRequest} request
+     * @param {RouteRedirectsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Pylon.UnauthorizedError}
+     * @throws {@link Pylon.ForbiddenError}
+     * @throws {@link Pylon.NotFoundError}
+     * @throws {@link Pylon.TooManyRequestsError}
+     * @throws {@link Pylon.InternalServerError}
+     * @throws {@link errors.PylonError}
+     * @throws {@link errors.PylonTimeoutError}
+     *
+     * @example
+     *     await client.knowledgeBases.routeRedirects.delete({
+     *         knowledge_base_id: "id",
+     *         redirect_id: "redirect_id"
+     *     })
+     */
+    public delete(
+        request: Pylon.knowledgeBases.KnowledgeBasesRouteRedirectsDeleteRequest,
+        requestOptions?: RouteRedirectsClient.RequestOptions,
+    ): core.HttpResponsePromise<Pylon.DeleteRouteRedirectResponseBody> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(request, requestOptions));
+    }
+
+    private async __delete(
+        request: Pylon.knowledgeBases.KnowledgeBasesRouteRedirectsDeleteRequest,
+        requestOptions?: RouteRedirectsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Pylon.DeleteRouteRedirectResponseBody>> {
+        const { knowledge_base_id: knowledgeBaseId, redirect_id: redirectId } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PylonEnvironment.Us,
+                `knowledge-bases/${core.url.encodePathParam(knowledgeBaseId)}/route-redirects/${core.url.encodePathParam(redirectId)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Pylon.DeleteRouteRedirectResponseBody,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Pylon.UnauthorizedError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Pylon.ForbiddenError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Pylon.NotFoundError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 429:
+                    throw new Pylon.TooManyRequestsError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Pylon.InternalServerError(
+                        _response.error.body as Pylon.ErrorApiResponseBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PylonError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "DELETE",
+            "/knowledge-bases/{knowledge_base_id}/route-redirects/{redirect_id}",
         );
     }
 }

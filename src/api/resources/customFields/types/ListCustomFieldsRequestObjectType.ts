@@ -8,6 +8,7 @@ export const ListCustomFieldsRequestObjectType = {
     Project: "project",
     Meeting: "meeting",
     Opportunity: "opportunity",
+    FeatureRequest: "feature_request",
 } as const;
 export type ListCustomFieldsRequestObjectType =
     (typeof ListCustomFieldsRequestObjectType)[keyof typeof ListCustomFieldsRequestObjectType];

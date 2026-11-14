@@ -364,11 +364,17 @@ export class ContactsClient {
      *  Field | Allowed operators |
      *  --- | --- |
      *  `id` | `equals`, `in`, `not_in` |
-     *  `email` | `equals`, `in`, `not_in`, `string_contains` |
-     *  `name` | `equals`, `in`, `not_in`, `string_contains` |
+     *  `email` | `equals`, `in`, `not_in`, `string_contains`, `string_does_not_contain` |
+     *  `name` | `equals`, `in`, `not_in`, `string_contains`, `string_does_not_contain` |
      *  `account_id` | `equals`, `in`, `not_in` |
      *
-     * For custom fields, pass the field slug as `field`.
+     * ### Filter syntax and operators
+     *
+     * See [Search filters](https://docs.usepylon.com/pylon-docs/developer/api/conventions#search-filters) for filter structure and operator definitions. The table above lists the operators supported by each field.
+     *
+     * ### Custom fields
+     *
+     * Set `field` to the custom field's slug.
      *
      * **Rate limit:** 120 requests per minute
      *

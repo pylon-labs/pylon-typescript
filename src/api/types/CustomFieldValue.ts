@@ -6,7 +6,7 @@
 export interface CustomFieldValue {
     /** The slug of the custom field. */
     slug?: string | undefined;
-    /** The value of the custom field. Only to be used for single-valued custom fields. If unset, the custom field will be unset. If the custom field is a select field, the value must be the select option slug, which you can find from the GET /custom-fields endpoint. If the custom field is a relationship field, the value must be the related object ID. */
+    /** The value of the custom field. Only to be used for single-valued custom fields. If unset, the custom field will be unset. If the custom field is a select field, the value must be the select option slug, which you can find from the GET /custom-fields endpoint. If the custom field is a relationship field, the value must be the related object ID. If the custom field is a date or datetime field, the value must be an RFC3339 timestamp, such as 2026-01-31T00:00:00Z. */
     value?: string | undefined;
     /** The values of the custom field. Only to be used for multi-valued custom fields (ex. multiselect). Replaces the full selection; it does not add to or remove from the existing values. If unset, the custom field will be unset. If the custom field is a multiselect field, the values must be the select option slugs which you can find from the GET /custom-fields endpoint. */
     values?: string[] | undefined;

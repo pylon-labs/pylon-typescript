@@ -32,9 +32,21 @@ export interface KnowledgeBasesArticlesUpdateRequest {
     position?: number;
     /** Whether to publish the updated body_html. Defaults to false, which leaves the change as a draft. */
     publish_updated_body_html?: boolean;
-    /** IDs of article tags to assign. If provided, replaces all tags currently assigned to the article. */
+    /** IDs of article tags to assign, applied according to tags_apply_mode. By default replaces all tags currently assigned to the article. */
     tag_ids?: string[];
+    /** The mode for applying tag_ids. Valid values: "append_only", "remove_only", "replace". Defaults to "replace". */
+    tags_apply_mode?: KnowledgeBasesArticlesUpdateRequest.TagsApplyMode;
     /** The title of the article. For the default language, applies to the live article immediately. */
     title?: string;
     visibility_config?: Pylon.ArticleVisibilityConfig;
+}
+
+export namespace KnowledgeBasesArticlesUpdateRequest {
+    /** The mode for applying tag_ids. Valid values: "append_only", "remove_only", "replace". Defaults to "replace". */
+    export const TagsApplyMode = {
+        AppendOnly: "append_only",
+        RemoveOnly: "remove_only",
+        Replace: "replace",
+    } as const;
+    export type TagsApplyMode = (typeof TagsApplyMode)[keyof typeof TagsApplyMode];
 }

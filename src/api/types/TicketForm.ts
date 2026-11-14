@@ -3,6 +3,8 @@
 import type * as Pylon from "../index.js";
 
 export interface TicketForm {
+    /** Whether the form offers AI search before submission. */
+    ai_search_enabled: boolean;
     /** The description of the ticket form in HTML. */
     description_html: string;
     /** The layout of the ticket form. */

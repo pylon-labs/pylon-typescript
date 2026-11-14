@@ -9,8 +9,8 @@ export interface RouteRedirect {
     id: string;
     /** The language of the object to redirect to. */
     language?: string | undefined;
-    /** The ID of the object to redirect to. */
+    /** The ID of the object to redirect to. Empty when object_type is knowledgebase. */
     object_id: string;
-    /** The type of the object to redirect to. */
+    /** The type of the object to redirect to: article, collection, or knowledgebase for the knowledge base homepage. */
     object_type: string;
 }

@@ -3,4 +3,4 @@ export type { KnowledgeBasesArticlesDeleteRequest } from "./KnowledgeBasesArticl
 export type { KnowledgeBasesArticlesGetRequest } from "./KnowledgeBasesArticlesGetRequest.js";
 export type { KnowledgeBasesArticlesListRequest } from "./KnowledgeBasesArticlesListRequest.js";
 export type { KnowledgeBasesArticlesRequestReviewRequest } from "./KnowledgeBasesArticlesRequestReviewRequest.js";
-export type { KnowledgeBasesArticlesUpdateRequest } from "./KnowledgeBasesArticlesUpdateRequest.js";
+export { KnowledgeBasesArticlesUpdateRequest } from "./KnowledgeBasesArticlesUpdateRequest.js";
