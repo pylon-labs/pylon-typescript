@@ -23,7 +23,10 @@ export class UserRolesClient {
     }
 
     /**
-     * Returns all user roles for the organization.
+     * Returns all user roles for the organization, with the actions each role grants.
+     * Permission and issue access rule filters use the same filter shape that search endpoints accept;
+     * a filter the API can't represent is omitted and marked filter_unsupported. A "current_user"
+     * value in a filter means the user the permission is checked for.
      *
      * **Rate limit:** 300 requests per minute
      *

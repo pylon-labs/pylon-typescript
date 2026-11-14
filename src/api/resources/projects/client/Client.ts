@@ -141,7 +141,23 @@ export class ProjectsClient {
      *  `created_at` | `time_is_after`, `time_is_before`, `time_range` |
      *  `updated_at` | `time_is_after`, `time_is_before`, `time_range` |
      *
-     * Timestamp values use RFC3339 format. Valid `status` values are `not_started`, `in_progress`, and `completed`. For custom fields, pass the field slug as `field`.
+     * ### Filter syntax and operators
+     *
+     * See [Search filters](https://docs.usepylon.com/pylon-docs/developer/api/conventions#search-filters) for filter structure and operator definitions. The table above lists the operators supported by each field.
+     *
+     * ### Filter values
+     *
+     * Timestamp values use RFC 3339 format, such as `2026-10-01T00:00:00Z`.
+     *
+     * `status` accepts:
+     *
+     * `not_started`
+     * `in_progress`
+     * `completed`
+     *
+     * ### Custom fields
+     *
+     * Set `field` to the custom field's slug.
      *
      * **Rate limit:** 120 requests per minute
      *

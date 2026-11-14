@@ -17,6 +17,8 @@ export interface IssuesUpdateRequest {
     assignee_id?: string;
     /** An array of custom fields to be used on this issue. Only passed in fields will be modified. */
     custom_fields?: Pylon.CustomFieldValue[];
+    /** The customer-facing title displayed in the customer portal, separate from the internal issue title. At most 191 characters. Pass an empty string to clear it. Omit to leave unchanged. */
+    customer_portal_title?: string;
     /** Whether the issue should be visible in the customer portal. */
     customer_portal_visible?: boolean;
     /** The ID of the requester that this issue is on behalf of. If an empty string is passed, the requester will be removed. This field must be provided when removing the issue's account, and a retained requester must not belong to any account. */
@@ -25,8 +27,10 @@ export interface IssuesUpdateRequest {
     requestor_id?: string;
     /** The state this issue should be moved to. Standard values are `new`, `waiting_on_you`, `waiting_on_customer`, `on_hold`, and `closed`; custom status slugs are also supported. */
     state?: string;
-    /** An array of strings to use as tags on this issue. If provided, the issue tags will be updated to be exactly the given tags. */
+    /** An array of strings to use as tags on this issue, applied according to tags_apply_mode. By default the issue tags will be updated to be exactly the given tags. */
     tags?: string[];
+    /** The mode for applying tags. Valid values: "append_only", "remove_only", "replace". Defaults to "replace". */
+    tags_apply_mode?: IssuesUpdateRequest.TagsApplyMode;
     /** The ID of the team this issue should be assigned to. If empty string is passed in, any assigned team will be removed. */
     team_id?: string;
     /** The title of the issue. */
@@ -36,6 +40,13 @@ export interface IssuesUpdateRequest {
 }
 
 export namespace IssuesUpdateRequest {
+    /** The mode for applying tags. Valid values: "append_only", "remove_only", "replace". Defaults to "replace". */
+    export const TagsApplyMode = {
+        AppendOnly: "append_only",
+        RemoveOnly: "remove_only",
+        Replace: "replace",
+    } as const;
+    export type TagsApplyMode = (typeof TagsApplyMode)[keyof typeof TagsApplyMode];
     /** The type of the issue. Set to "ticket" to upgrade a conversation to a support ticket. Cannot be downgraded from "ticket" to "conversation". */
     export const Type = {
         Conversation: "conversation",

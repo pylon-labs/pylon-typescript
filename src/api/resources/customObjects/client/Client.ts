@@ -381,8 +381,23 @@ export class CustomObjectsClient {
      *  `created_at` | `time_is_after`, `time_is_before`, `time_range` |
      *  `updated_at` | `time_is_after`, `time_is_before`, `time_range` |
      *
-     * `account` is the built-in Account relationship field present on every custom object type; its values are account IDs.
-     * Timestamp values use RFC3339 format. For custom fields, pass the field slug as `field`.
+     * ### Filter syntax and operators
+     *
+     * See [Search filters](https://docs.usepylon.com/pylon-docs/developer/api/conventions#search-filters) for filter structure and operator definitions. The table above lists the operators supported by each field.
+     *
+     * ### Filter values
+     *
+     * Timestamp values use RFC 3339 format, such as `2026-10-01T00:00:00Z`.
+     *
+     *  Field | Values and behavior |
+     *  --- | --- |
+     *  `account` | The built-in Account relationship field on every custom object type. Use account IDs as values. |
+     *
+     * ### Custom fields
+     *
+     * Set `field` to the custom field's slug.
+     *
+     * ### Opportunities
      *
      * A `{type}` of `opportunity` is an alias for the opportunities API and filters on a different set of fields:
      *

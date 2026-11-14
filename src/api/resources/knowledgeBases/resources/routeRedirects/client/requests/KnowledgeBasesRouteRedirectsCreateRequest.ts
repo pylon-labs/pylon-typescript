@@ -5,7 +5,6 @@
  *     {
  *         knowledge_base_id: "id",
  *         from_path: "from_path",
- *         object_id: "object_id",
  *         object_type: "object_type"
  *     }
  */
@@ -16,8 +15,8 @@ export interface KnowledgeBasesRouteRedirectsCreateRequest {
     from_path: string;
     /** Language of the object to redirect to. If not specified, the default language of the knowledge base will be used. */
     language?: string;
-    /** The ID of the object to redirect to. */
-    object_id: string;
-    /** The type of the object to redirect to. Must be "article" or "collection". */
+    /** The ID of the article or collection to redirect to. Omit when object_type is "knowledgebase". */
+    object_id?: string;
+    /** The type of the object to redirect to: "article", "collection", or "knowledgebase" for the knowledge base homepage. */
     object_type: string;
 }

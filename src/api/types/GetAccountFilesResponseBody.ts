@@ -2,8 +2,9 @@
 
 import type * as Pylon from "../index.js";
 
-export interface GetCustomerPortalSettingsResponseBody {
-    data: Pylon.CustomerPortalSettings;
+export interface GetAccountFilesResponseBody {
+    /** The data payload of the response. */
+    data: Pylon.AccountFile[];
     /** The request ID for tracking. */
     request_id: string;
 }
