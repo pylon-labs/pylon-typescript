@@ -9,15 +9,24 @@ export interface ImportIssueRequest {
     assignee_id?: string | undefined;
     /** An array of attachment URLs to attach to this issue. */
     attachment_urls?: string[] | undefined;
+    /** The issue description in HTML. If omitted or blank after sanitization, the description defaults to the first message's body, when present. */
+    body_html?: string | undefined;
     /** CreatedAt is the time the issue was created (RFC3339). */
     created_at?: string | undefined;
     /** An array of custom fields to be used on this issue. */
     custom_fields?: Pylon.CustomFieldValue[] | undefined;
+    /** Whether the issue is visible in the customer portal. Defaults to true when omitted. */
+    customer_portal_visible?: boolean | undefined;
     /** External issues to link to this issue. */
     external_issues?: Pylon.ImportExternalIssue[] | undefined;
     external_refs?: Pylon.ImportIssueExternalRefs | undefined;
     /** FirstResponseTime is the time the issue was first responded to (RFC3339). */
     first_response_time?: string | undefined;
+    /**
+     * Optional key of at most 255 bytes, scoped to the organization and retained for 14 days.
+     * Reuse the same key and request body to safely retry an import.
+     */
+    idempotency_key?: string | undefined;
     /**
      * An optional issue number to preserve from the platform the issue is being imported from.
      * Usually, do not set this field. Pylon normally assigns its own auto-incrementing ticket numbers.
@@ -25,8 +34,8 @@ export interface ImportIssueRequest {
      * When set, it must be positive and lower than the organization's current ticket number counter.
      */
     issue_number?: number | undefined;
-    /** Messages to be imported for this issue. At least one message is required. */
-    messages: Pylon.ImportIssueMessage[];
+    /** Messages to import for this issue. Omit this field or pass an empty array for an issue without messages. */
+    messages?: Pylon.ImportIssueMessage[] | undefined;
     /** The ID of a partner account that serves account_id. Requires account_id. */
     partner_account_id?: string | undefined;
     /** ContactID that the issue should be on behalf of. If omitted, the issue has no requester. */

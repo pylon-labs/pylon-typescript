@@ -84,7 +84,7 @@ export interface Issue {
     /**
      * The source of the issue.
      *
-     * Known values: `slack`, `microsoft_teams`, `microsoft_teams_chat`, `chat_widget`, `customer_portal`, `email`, `manual`, `form`, `discord`, `google_chat`, `whatsapp`, `sms`, `telegram`, `phone`. This list is not exhaustive.
+     * Known values: `slack`, `microsoft_teams`, `microsoft_teams_chat`, `chat_widget`, `customer_portal`, `email`, `manual`, `form`, `discord`, `google_chat`, `whatsapp`, `sms`, `telegram`, `phone`, `support_api`. This list is not exhaustive.
      */
     source: string;
     /** The state of the issue. Standard values are `new`, `waiting_on_you`, `waiting_on_customer`, `on_hold`, and `closed`; custom status slugs are also supported. */

@@ -256,91 +256,105 @@ export class FeatureRequestsClient {
      * @example
      *     await client.featureRequests.search()
      */
-    public search(
+    public async search(
         request: Pylon.FeatureRequestsSearchRequest = {},
         requestOptions?: FeatureRequestsClient.RequestOptions,
-    ): core.HttpResponsePromise<Pylon.SearchFeatureRequestsResponseBody> {
-        return core.HttpResponsePromise.fromPromise(this.__search(request, requestOptions));
-    }
-
-    private async __search(
-        request: Pylon.FeatureRequestsSearchRequest = {},
-        requestOptions?: FeatureRequestsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Pylon.SearchFeatureRequestsResponseBody>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PylonEnvironment.Us,
-                "feature-requests/search",
-            ),
-            method: "POST",
-            headers: _headers,
-            contentType: "application/json",
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            requestType: "json",
-            body: mergeAdditionalBodyParameters(request, requestOptions?.additionalBodyParameters),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: _response.body as Pylon.SearchFeatureRequestsResponseBody,
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Pylon.BadRequestError(
-                        _response.error.body as Pylon.ErrorApiResponseBody,
-                        _response.rawResponse,
-                    );
-                case 401:
-                    throw new Pylon.UnauthorizedError(
-                        _response.error.body as Pylon.ErrorApiResponseBody,
-                        _response.rawResponse,
-                    );
-                case 403:
-                    throw new Pylon.ForbiddenError(
-                        _response.error.body as Pylon.ErrorApiResponseBody,
-                        _response.rawResponse,
-                    );
-                case 404:
-                    throw new Pylon.NotFoundError(
-                        _response.error.body as Pylon.ErrorApiResponseBody,
-                        _response.rawResponse,
-                    );
-                case 429:
-                    throw new Pylon.TooManyRequestsError(
-                        _response.error.body as Pylon.ErrorApiResponseBody,
-                        _response.rawResponse,
-                    );
-                case 500:
-                    throw new Pylon.InternalServerError(
-                        _response.error.body as Pylon.ErrorApiResponseBody,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PylonError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
+    ): Promise<core.Page<Pylon.FeatureRequestSearchResult, Pylon.SearchFeatureRequestsResponseBody>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: Pylon.FeatureRequestsSearchRequest,
+            ): Promise<core.WithRawResponse<Pylon.SearchFeatureRequestsResponseBody>> => {
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    requestOptions?.headers,
+                );
+                const _response = await core.fetcher({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)) ??
+                            environments.PylonEnvironment.Us,
+                        "feature-requests/search",
+                    ),
+                    method: "POST",
+                    headers: _headers,
+                    contentType: "application/json",
+                    queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+                    requestType: "json",
+                    body: mergeAdditionalBodyParameters(request, requestOptions?.additionalBodyParameters),
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: _response.body as Pylon.SearchFeatureRequestsResponseBody,
                         rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/feature-requests/search");
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    switch (_response.error.statusCode) {
+                        case 400:
+                            throw new Pylon.BadRequestError(
+                                _response.error.body as Pylon.ErrorApiResponseBody,
+                                _response.rawResponse,
+                            );
+                        case 401:
+                            throw new Pylon.UnauthorizedError(
+                                _response.error.body as Pylon.ErrorApiResponseBody,
+                                _response.rawResponse,
+                            );
+                        case 403:
+                            throw new Pylon.ForbiddenError(
+                                _response.error.body as Pylon.ErrorApiResponseBody,
+                                _response.rawResponse,
+                            );
+                        case 404:
+                            throw new Pylon.NotFoundError(
+                                _response.error.body as Pylon.ErrorApiResponseBody,
+                                _response.rawResponse,
+                            );
+                        case 429:
+                            throw new Pylon.TooManyRequestsError(
+                                _response.error.body as Pylon.ErrorApiResponseBody,
+                                _response.rawResponse,
+                            );
+                        case 500:
+                            throw new Pylon.InternalServerError(
+                                _response.error.body as Pylon.ErrorApiResponseBody,
+                                _response.rawResponse,
+                            );
+                        default:
+                            throw new errors.PylonError({
+                                statusCode: _response.error.statusCode,
+                                body: _response.error.body,
+                                rawResponse: _response.rawResponse,
+                            });
+                    }
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "POST",
+                    "/feature-requests/search",
+                );
+            },
+        );
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<Pylon.FeatureRequestSearchResult, Pylon.SearchFeatureRequestsResponseBody>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) =>
+                response?.pagination?.cursor != null &&
+                !(typeof response?.pagination?.cursor === "string" && response?.pagination?.cursor === ""),
+            getItems: (response) => response?.data ?? [],
+            loadPage: (response) => {
+                return list(core.setObjectProperty(request, "cursor", response?.pagination?.cursor));
+            },
+        });
     }
 
     /**

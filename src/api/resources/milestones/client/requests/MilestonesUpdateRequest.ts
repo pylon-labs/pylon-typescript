@@ -11,6 +11,11 @@ export interface MilestonesUpdateRequest {
     id: string;
     /** Due date for this milestone, in RFC 3339 format. Set to an empty string to clear it. */
     due_date?: string;
+    /**
+     * Interpret due_date as a calendar date in UTC, without timezone conversion.
+     * Must be supplied with a nonempty due_date when true.
+     */
+    due_date_is_date_only?: boolean;
     /** Name for this milestone */
     name?: string;
 }

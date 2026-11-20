@@ -6,6 +6,8 @@ export interface Milestone {
     account?: Pylon.MiniAccount | undefined;
     created_at: string;
     due_date?: string | undefined;
+    /** When true, due_date represents a calendar date in UTC without timezone conversion. */
+    due_date_is_date_only: boolean;
     id: string;
     name: string;
     project?: Pylon.MiniProject | undefined;

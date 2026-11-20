@@ -7,9 +7,11 @@
 export interface FeatureRequestsSearchRequest {
     /** Filter by one or more account IDs. Returns only feature requests with evidence linked to any of the given accounts. */
     account_ids?: string[];
+    /** The pagination cursor returned by the previous page. Reuse the same query and filters. */
+    cursor?: string;
     /** The maximum number of feature requests to return. Defaults to 100, max 1000. */
     limit?: number;
-    /** A search query string for semantic and keyword matching. If omitted, all feature requests are returned (subject to other filters and limit). */
+    /** A search query string for semantic and keyword matching. Pagination covers the ranked search results when a query is provided. Omit the query to list all feature requests matching the filters. */
     query?: string;
     /** Filter by one or more request statuses. Each value can be a built-in status (new, in_progress, closed, archived) or a custom status slug. */
     request_statuses?: string[];

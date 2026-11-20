@@ -27,6 +27,11 @@ export interface TasksUpdateRequest {
     customer_portal_visible?: boolean;
     /** Due date for this task, in RFC 3339 format. Set to an empty string to clear it. */
     due_date?: string;
+    /**
+     * Interpret due_date as a calendar date in UTC, without timezone conversion.
+     * Must be supplied with a nonempty due_date when true.
+     */
+    due_date_is_date_only?: boolean;
     /** Milestone ID for this task */
     milestone_id?: string;
     /** Project ID for this task */
