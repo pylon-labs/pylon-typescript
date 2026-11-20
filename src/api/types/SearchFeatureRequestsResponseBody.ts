@@ -4,5 +4,6 @@ import type * as Pylon from "../index.js";
 
 export interface SearchFeatureRequestsResponseBody {
     data: Pylon.FeatureRequestSearchResult[];
+    pagination?: Pylon.Pagination | undefined;
     request_id: string;
 }

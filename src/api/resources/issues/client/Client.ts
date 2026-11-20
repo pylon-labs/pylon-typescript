@@ -1686,6 +1686,8 @@ export class IssuesClient {
      * * If neither is provided, posts to the most recently created Slack-backed internal thread. If none exists, creates a Pylon-only internal thread.
      * * thread_name names that newly created Pylon-only thread and is otherwise ignored.
      *
+     * Notes posted to an internal email thread are sent as email, so email_info must contain at least one recipient across to_emails, cc_emails, and bcc_emails.
+     *
      * Empty thread_id, message_id, and thread_name values are treated as omitted.
      *
      * **Rate limit:** 30 requests per minute
