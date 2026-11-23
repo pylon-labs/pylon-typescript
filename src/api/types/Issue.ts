@@ -21,7 +21,9 @@ export interface Issue {
     business_hours_first_response_seconds?: number | undefined;
     /** The business hours time in seconds it took for the issue to be resolved, if any. */
     business_hours_resolution_seconds?: number | undefined;
-    /** A map of status slug to the business hours time in seconds the issue has spent in that status. Includes both base statuses (e.g. "new", "waiting_on_you") and custom statuses. */
+    /** A map of status slug to the business hours time in seconds the issue has spent in that status. Keys match the issue's state field and GET /issue-statuses. Includes both base statuses (e.g. "new", "waiting_on_you") and custom statuses. */
+    business_hours_time_in_state_seconds?: Record<string, number> | undefined;
+    /** Deprecated: Use business_hours_time_in_state_seconds. Keys use the same legacy names as time_in_status_seconds. */
     business_hours_time_in_status_seconds?: Record<string, number> | undefined;
     chat_widget_info?: Pylon.IssueChatWidgetInfo | undefined;
     /** The child issues in this group, if this issue is an issue group. */
@@ -84,7 +86,7 @@ export interface Issue {
     /**
      * The source of the issue.
      *
-     * Known values: `slack`, `microsoft_teams`, `microsoft_teams_chat`, `chat_widget`, `customer_portal`, `email`, `manual`, `form`, `discord`, `google_chat`, `whatsapp`, `sms`, `telegram`, `phone`. This list is not exhaustive.
+     * Known values: `slack`, `microsoft_teams`, `microsoft_teams_chat`, `chat_widget`, `customer_portal`, `email`, `manual`, `form`, `discord`, `google_chat`, `whatsapp`, `sms`, `telegram`, `phone`, `support_api`. This list is not exhaustive.
      */
     source: string;
     /** The state of the issue. Standard values are `new`, `waiting_on_you`, `waiting_on_customer`, `on_hold`, and `closed`; custom status slugs are also supported. */
@@ -94,7 +96,9 @@ export interface Issue {
     team?: (Pylon.MiniTeam | null) | undefined;
     /** The team-scoped SLAs on the issue, if any. One entry per team, mirroring the issue-level first response and resolution SLA fields. */
     team_slas?: Pylon.TeamSla[] | undefined;
-    /** A map of status slug to the time in seconds the issue has spent in that status. Includes both base statuses (e.g. "new", "waiting_on_you") and custom statuses. */
+    /** A map of status slug to the time in seconds the issue has spent in that status. Keys match the issue's state field and GET /issue-statuses. Includes both base statuses (e.g. "new", "waiting_on_you") and custom statuses. */
+    time_in_state_seconds?: Record<string, number> | undefined;
+    /** Deprecated: Use time_in_state_seconds. Base statuses use legacy keys that differ from status slugs: "open" (New), "in_progress" (Waiting on You), "on_hold" (Waiting on Customer), "waiting_on_action" (On Hold), and "closed" (Closed). Custom statuses use their slug. */
     time_in_status_seconds?: Record<string, number> | undefined;
     /** The title of the issue. */
     title: string;

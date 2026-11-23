@@ -96,6 +96,8 @@ export interface IssuesCreateRequest {
     team_id?: string;
     /** The title of the issue. */
     title: string;
+    /** Set to "ticket" to create the issue as a ticket. Issues with destination "slack" are otherwise created as conversations so that new top-level channel messages can be grouped into them; all other issues are created as tickets. */
+    type?: IssuesCreateRequest.Type;
     /** The internal Pylon user to attribute the first message to. This does not assign the user as the requester. Only one of user_id or contact_id can be provided. If neither is set, the API token's user is used. */
     user_id?: string;
 }
@@ -109,4 +111,9 @@ export namespace IssuesCreateRequest {
         Low: "low",
     } as const;
     export type Priority = (typeof Priority)[keyof typeof Priority];
+    /** Set to "ticket" to create the issue as a ticket. Issues with destination "slack" are otherwise created as conversations so that new top-level channel messages can be grouped into them; all other issues are created as tickets. */
+    export const Type = {
+        Ticket: "ticket",
+    } as const;
+    export type Type = (typeof Type)[keyof typeof Type];
 }

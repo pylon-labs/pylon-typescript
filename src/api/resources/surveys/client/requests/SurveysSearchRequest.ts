@@ -7,6 +7,8 @@ import type * as Pylon from "../../../../index.js";
  *     {}
  */
 export interface SurveysSearchRequest {
+    /** The pagination cursor returned by the previous page. Reuse the same filter. */
+    cursor?: string;
     filter?: Pylon.Filter;
     /** The number of surveys to fetch. Defaults to 100. Must be between 1 and 1000. */
     limit?: number;

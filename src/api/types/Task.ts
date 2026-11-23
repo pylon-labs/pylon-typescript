@@ -21,8 +21,10 @@ export interface Task {
     custom_fields?: (Record<string, Pylon.CustomFieldValue | null> | null) | undefined;
     /** The customer portal visible of the task. */
     customer_portal_visible: boolean;
-    /** The due date of the task in RFC3339 format. */
+    /** Due date in RFC3339 format. Date-only deadlines use UTC midnight; interpret the UTC calendar day when due_date_is_date_only is true. */
     due_date?: string | undefined;
+    /** Whether due_date is a calendar date without a specific time or timezone. */
+    due_date_is_date_only: boolean;
     /** The external product issues associated with the task, if any. */
     external_issues?: Pylon.ExternalIssue[] | undefined;
     /** The ID of the task. */

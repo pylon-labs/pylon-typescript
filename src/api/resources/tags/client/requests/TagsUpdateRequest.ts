@@ -11,9 +11,6 @@ export interface TagsUpdateRequest {
     id: string;
     /** The hex code of the tag's color. */
     hex_color?: string;
-    /**
-     * in: body
-     * The name of the tag.
-     */
+    /** The name of the tag. */
     value?: string;
 }

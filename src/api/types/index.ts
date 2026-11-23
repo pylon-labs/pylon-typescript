@@ -43,6 +43,7 @@ export * from "./CreateIssueAiResponseResponseBody.js";
 export * from "./CreateIssueDraftReplyResponseBody.js";
 export * from "./CreateIssueDraftReplyResponseData.js";
 export * from "./CreateIssueGroupResponseBody.js";
+export * from "./CreateIssueNoteEmailInfo.js";
 export * from "./CreateIssueNoteResponseBody.js";
 export * from "./CreateIssueNoteResponseData.js";
 export * from "./CreateIssueReplyEmailInfo.js";
