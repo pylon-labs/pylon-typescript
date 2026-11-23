@@ -26,8 +26,8 @@ export class ActivitiesClient {
     /**
      * Returns custom activities for the specified account, ordered from newest to oldest.
      * The {id} parameter accepts either:
-     * Internal account ID (UUID format)
-     * External ID (any string format)
+     * - Internal account ID (UUID format)
+     * - External ID (any string format)
      *
      * **Rate limit:** 300 requests per minute
      *
@@ -167,8 +167,8 @@ export class ActivitiesClient {
 
     /**
      * The {id} parameter accepts either:
-     * Internal account ID (UUID format)
-     * External ID (any string format)
+     * - Internal account ID (UUID format)
+     * - External ID (any string format)
      *
      * **Rate limit:** 120 requests per minute
      *

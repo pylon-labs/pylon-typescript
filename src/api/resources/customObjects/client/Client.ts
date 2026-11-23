@@ -374,12 +374,12 @@ export class CustomObjectsClient {
     /**
      * Filterable fields and their allowed operators:
      *
-     *  Field | Allowed operators |
-     *  --- | --- |
-     *  `name` | `equals`, `in`, `not_in`, `string_contains`, `string_does_not_contain`, `is_set`, `is_unset` |
-     *  `account` | `equals`, `in`, `not_in`, `is_set`, `is_unset` |
-     *  `created_at` | `time_is_after`, `time_is_before`, `time_range` |
-     *  `updated_at` | `time_is_after`, `time_is_before`, `time_range` |
+     * Field | Allowed operators |
+     * --- | --- |
+     * `name` | `equals`, `in`, `not_in`, `string_contains`, `string_does_not_contain`, `is_set`, `is_unset` |
+     * `account` | `equals`, `in`, `not_in`, `is_set`, `is_unset` |
+     * `created_at` | `time_is_after`, `time_is_before`, `time_range` |
+     * `updated_at` | `time_is_after`, `time_is_before`, `time_range` |
      *
      * ### Filter syntax and operators
      *
@@ -389,9 +389,9 @@ export class CustomObjectsClient {
      *
      * Timestamp values use RFC 3339 format, such as `2026-10-01T00:00:00Z`.
      *
-     *  Field | Values and behavior |
-     *  --- | --- |
-     *  `account` | The built-in Account relationship field on every custom object type. Use account IDs as values. |
+     * Field | Values and behavior |
+     * --- | --- |
+     * `account` | The built-in Account relationship field on every custom object type. Use account IDs as values. |
      *
      * ### Custom fields
      *
@@ -401,12 +401,12 @@ export class CustomObjectsClient {
      *
      * A `{type}` of `opportunity` is an alias for the opportunities API and filters on a different set of fields:
      *
-     *  Field | Allowed operators |
-     *  --- | --- |
-     *  `name` | `equals`, `in`, `not_in`, `string_contains` |
-     *  `account_id` | `equals`, `in`, `not_in` |
-     *  `source` | `equals`, `in`, `not_in` |
-     *  `created_at` | `time_is_after`, `time_is_before`, `time_range` |
+     * Field | Allowed operators |
+     * --- | --- |
+     * `name` | `equals`, `in`, `not_in`, `string_contains` |
+     * `account_id` | `equals`, `in`, `not_in` |
+     * `source` | `equals`, `in`, `not_in` |
+     * `created_at` | `time_is_after`, `time_is_before`, `time_range` |
      *
      * **Rate limit:** 120 requests per minute
      *

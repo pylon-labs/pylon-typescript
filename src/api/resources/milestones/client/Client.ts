@@ -133,15 +133,15 @@ export class MilestonesClient {
     /**
      * Filterable fields and their allowed operators:
      *
-     *  Field | Allowed operators |
-     *  --- | --- |
-     *  `project_id` | `equals`, `in`, `not_in` |
-     *  `account_id` | `equals`, `in`, `not_in`, `is_set`, `is_unset` |
-     *  `due_date` | `time_is_after`, `time_is_before`, `time_range`, `is_set`, `is_unset` |
-     *  `created_at` | `time_is_after`, `time_is_before`, `time_range` |
-     *  `updated_at` | `time_is_after`, `time_is_before`, `time_range` |
-     *  `started_at` | `time_is_after`, `time_is_before`, `time_range`, `is_set` |
-     *  `completed_at` | `time_is_after`, `time_is_before`, `time_range`, `is_set` |
+     * Field | Allowed operators |
+     * --- | --- |
+     * `project_id` | `equals`, `in`, `not_in` |
+     * `account_id` | `equals`, `in`, `not_in`, `is_set`, `is_unset` |
+     * `due_date` | `time_is_after`, `time_is_before`, `time_range`, `is_set`, `is_unset` |
+     * `created_at` | `time_is_after`, `time_is_before`, `time_range` |
+     * `updated_at` | `time_is_after`, `time_is_before`, `time_range` |
+     * `started_at` | `time_is_after`, `time_is_before`, `time_range`, `is_set` |
+     * `completed_at` | `time_is_after`, `time_is_before`, `time_range`, `is_set` |
      *
      * ### Filter syntax and operators
      *

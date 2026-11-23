@@ -29,10 +29,7 @@ export interface ContactsUpdateRequest {
     emails?: Pylon.UpdateContactEmail[];
     /** An array of external IDs to be used on this contact. If provided, the contact's external IDs will be updated to the given external IDs. */
     external_ids?: Pylon.ExternalId[];
-    /**
-     * in: body
-     * The name of the contact.
-     */
+    /** The name of the contact. */
     name?: string;
     /** The phone numbers of the contact. Must contain only digits 0-9, optionally preceded by + (E.164, e.g. +4365446231), and be 15 digits or less. Include the + and country code for non-US numbers; a 10-digit number without + is treated as US. */
     phone_numbers?: string[];

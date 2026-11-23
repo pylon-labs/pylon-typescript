@@ -237,9 +237,9 @@ export class UsersClient {
     /**
      * Filterable fields and their allowed operators:
      *
-     *  Field | Allowed operators |
-     *  --- | --- |
-     *  `email` | `equals`, `in`, `not_in` |
+     * Field | Allowed operators |
+     * --- | --- |
+     * `email` | `equals`, `in`, `not_in` |
      *
      * ### Filter syntax and operators
      *

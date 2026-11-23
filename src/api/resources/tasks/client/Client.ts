@@ -249,16 +249,16 @@ export class TasksClient {
     /**
      * Filterable fields and their allowed operators:
      *
-     *  Field | Allowed operators |
-     *  --- | --- |
-     *  `account_id` | `equals`, `in`, `not_in`, `is_set` |
-     *  `project_id` | `equals`, `in`, `not_in`, `is_set`, `is_unset` |
-     *  `status` | `equals`, `in`, `not_in` |
-     *  `assignee_id` | `equals`, `in`, `not_in`, `is_set` |
-     *  `milestone_id` | `equals`, `in`, `not_in`, `is_set` |
-     *  `created_at` | `time_is_after`, `time_is_before`, `time_range` |
-     *  `due_date` | `time_is_after`, `time_is_before`, `time_range`, `is_set` |
-     *  `updated_at` | `time_is_after`, `time_is_before`, `time_range` |
+     * Field | Allowed operators |
+     * --- | --- |
+     * `account_id` | `equals`, `in`, `not_in`, `is_set` |
+     * `project_id` | `equals`, `in`, `not_in`, `is_set`, `is_unset` |
+     * `status` | `equals`, `in`, `not_in` |
+     * `assignee_id` | `equals`, `in`, `not_in`, `is_set` |
+     * `milestone_id` | `equals`, `in`, `not_in`, `is_set` |
+     * `created_at` | `time_is_after`, `time_is_before`, `time_range` |
+     * `due_date` | `time_is_after`, `time_is_before`, `time_range`, `is_set` |
+     * `updated_at` | `time_is_after`, `time_is_before`, `time_range` |
      *
      * ### Filter syntax and operators
      *
@@ -270,9 +270,9 @@ export class TasksClient {
      *
      * `status` accepts:
      *
-     * `not_started`
-     * `in_progress`
-     * `completed`
+     * - `not_started`
+     * - `in_progress`
+     * - `completed`
      *
      * ### Custom fields
      *

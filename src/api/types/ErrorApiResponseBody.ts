@@ -7,7 +7,7 @@ export interface ErrorApiResponseBody {
      * A stable machine-readable identifier for this failure, safe to branch on
      * instead of the message text. Omitted when the failure has no assigned code.
      *
-     * Known values: `recipients_suppressed`, `email_bounced`, `internal_issue_reply_not_allowed`, `duplicate_object`, `invalid_authorization_header`, `invalid_api_token`, `invalid_oauth_token`, `wrong_region_token`, `organization_deactivated`, `organization_suspended`, `permission_denied`, `oauth_not_permitted`, `rate_limited`, `not_found`, `method_not_allowed`, `payload_too_large`, `invalid_request_body`, `internal_error`, `invalid_webhook_credentials`, `organization_inactive`, `invalid_filter`. This list is not exhaustive.
+     * Known values: `recipients_suppressed`, `email_bounced`, `internal_issue_reply_not_allowed`, `duplicate_object`, `invalid_authorization_header`, `invalid_api_token`, `invalid_oauth_token`, `wrong_region_token`, `organization_deactivated`, `organization_suspended`, `permission_denied`, `oauth_not_permitted`, `rate_limited`, `not_found`, `method_not_allowed`, `payload_too_large`, `invalid_request_body`, `internal_error`, `invalid_webhook_credentials`, `organization_inactive`, `invalid_filter`, `invalid_user_id`. This list is not exhaustive.
      */
     code?: string | undefined;
     /** The list of errors. */
