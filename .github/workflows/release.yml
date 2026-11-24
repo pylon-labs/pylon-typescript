@@ -6,6 +6,9 @@ on:
       version:
         description: Version to release, such as 0.1.0-alpha.1
         required: true
+      notes:
+        description: Markdown shown above the generated changelog, listing breaking changes and what's new
+        required: true
 
 permissions:
   contents: read
@@ -36,6 +39,7 @@ jobs:
         env:
           VERSION: ${{ inputs.version }}
           GH_TOKEN: ${{ github.token }}
+          NOTES: ${{ inputs.notes }}
         run: |
           previous=$(jq -r .version package.json)
           npm version "$VERSION" --no-git-tag-version
@@ -63,7 +67,8 @@ jobs:
               dist_tag=$(echo "${VERSION#*-}" | cut -d. -f1)
             fi
           fi
-          gh release create "v$VERSION" "$tarball" --generate-notes "${prerelease[@]}"
+          printf '%s\n' "$NOTES" > "$RUNNER_TEMP/notes.md"
+          gh release create "v$VERSION" "$tarball" --generate-notes --notes-file "$RUNNER_TEMP/notes.md" "${prerelease[@]}"
           echo "tarball=$tarball" >> "$GITHUB_OUTPUT"
           echo "dist_tag=$dist_tag" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
