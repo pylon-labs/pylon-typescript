@@ -110,6 +110,12 @@ export interface Issue {
     type: string;
     /** The time the issue was last updated. */
     updated_at: string;
+    /**
+     * Whether a WhatsApp issue's conversation is a direct message or a group chat. Only set for WhatsApp issues; unknown when it cannot be determined.
+     *
+     * Known values: `direct`, `group`, `unknown`. This list is not exhaustive.
+     */
+    whatsapp_conversation_type?: string | undefined;
     /** The email address connected to the Pylon workspace through which the issue's email conversation is routed. For inbound issues, this is the address that received the original email. */
     workspace_email?: string | undefined;
     /** The WhatsApp, SMS, or voice phone number connected to the Pylon workspace through which the issue's conversation is routed. For inbound issues, this is the number the customer messaged or called. */
